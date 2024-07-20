@@ -14,8 +14,8 @@ by Team *YBR-AGO*
 <br><br><br><br>
 
 ## Our works (Youtube Links): 
-https://youtu.be/MBe6ZsyGE-E
-
+Without obstacle https://youtu.be/MBe6ZsyGE-E
+With obstacle
 
 <br>
 
@@ -24,3 +24,13 @@ https://youtu.be/MBe6ZsyGE-E
 - Team information
 - Design process
 - Program explaination
+
+
+# **Part 1: About our team.**
+*YBR-Sunflower* is a team of three. All the team members are students at Yothinburana School. 
+Here are the team members.
+1. Vorawet Narkglom
+
+2. Chaiwat Chinsupawat
+
+3. Vichaiwat Koonsap
