@@ -35,3 +35,38 @@ Here are the team members.
 2. Chaiwat Chinsupawat
 
 3. Vichaiwat Koonsap
+
+
+
+### Our robot components
+
+- ## **Driving motor** : Power functions Large-motor made by LEGO™.
+<image src="https://github.com/LEST0808/POP32ph/blob/main/Motor.png" width = "400">
+
+### Electrical Specifications
+
+| Specification     | Value    |
+|-------------------|----------|
+| Voltage           | 9 V      |
+
+### Mechanical Specifications
+
+| Specification     | Value    |
+|-------------------|----------|
+| Speed             | 380 rpm  |
+| Maximum torque    | 40 Ncm   |
+
+<br><br>
+
+- ## **Servo** : GEEKSERVO 2kg 360 Degrees servo.
+<image src="https://github.com/LEST0808/POP32ph/blob/main/Servo%201.png" width = "400">
+
+### Electrical Specifications
+
+| Specification     | Value    |
+|-------------------|----------|
+| Working voltage   | 3.3V~6V  |
+| Rated voltage     | 4.8V     |
+| Rated current     | 200mA    |
+| Stall current     | 700mA    |
+| Sliding current   | 450mA    |
