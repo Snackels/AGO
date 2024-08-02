@@ -94,3 +94,41 @@ The weight of the vehicle must not exceed 1.5 kilograms.
 <image src = "https://github.com/LEST0808/Sunflower-Photos/blob/main/Wheel.png" width = "400">
 
 <br><br>
+
+### Power Management and Inspection
+- ## **Ultra sonic sensor** : Gravity URM 09 ultrasonic distance sensor.
+<image src="https://github.com/LEST0808/POP32ph/blob/main/117270007.png" width = "400">
+
+### Electrical Specifications
+
+| Specification                   | Value                  |
+|---------------------------------|------------------------|
+| Supply Voltage                  | 3.3~5.5V DC            |
+| Operating Current               | 20mA                   |
+
+### Performance Specifications
+
+| Specification                   | Value                  |
+|---------------------------------|------------------------|
+| Operating Temperature Range      | -10°C to +70°C          |
+| Measurement Range                | 2cm to 500cm (can be set) |
+| Resolution                       | 1cm                    |
+| Accuracy                         | 1%                     |
+| Frequency                        | 50Hz Max               |
+
+<br><br>
+
+- ## **7.4 voltage Lipo-Battery** : 7.4 voltage 2 cell Lipo-Battery.
+<image src="https://github.com/LEST0808/POP32ph/blob/main/Bat.png" width = "400">
+
+### Specification
+
+| Specification                   | Value                                        |
+|---------------------------------|----------------------------------------------|
+| 2 cells Voltage                  | 7.4V                                         |
+| Capacity                         | 1100mAh 30C                                  |
+| Charging Current                 | Up to 5 times the capacity (5C)             |
+| Connectors                       | JST type, easily disconnectable              |
+
+<br><br>
+
