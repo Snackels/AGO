@@ -101,7 +101,7 @@ For the design, we placed the gyro around the middle-top of the robot to get the
 
  ### Controller
 - ## **Microcontroller Board** : Arduino Mega 2560 R3
-<img src = "" width = "400">
+<img src = "https://github.com/LEST0808/Sunflower-Photos/blob/main/Mega.png?raw=true" width = "400">
 
 | Specification           | Value                                  |
 |-------------------------|----------------------------------------|
