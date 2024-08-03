@@ -40,16 +40,13 @@ Here are the team members.
 # **Part 2: Robot Design.**
 ### The Robot
 
-Designing a good robot is indeed a challenging task as it requires a lot of consideration and planning to ensure it can move swiftly and follow specific rules. One of the primary requirements is that the robot must be a four-wheeled vehicle with one driving axle and one steering actuator, which is why we carefully chose these components. After selecting all the necessary components, we had to figure out how to make them all fit together. For instance, we placed the gyro around the middle-top of the robot to get the most accurate output, while the camera was positioned at the back-top to detect objects quickly.
+Designing a robot for this competition is sometime hard. We need to design it to be compact, lightweight, durable, and have all the functions we need. The robot must be four-wheeled with a steering function on either front or back wheel, which is why we need to be careful to pick the components. After we select all the components we need, then we think about how to put them all together. We came up with two choices. The first is with Lego Technic parts, but due to its size and weigh,which must be 300x200mm and 300mm in height, that makes it hard to design a compact robot. So we decided to use a 3D-printed robot for more lightweight, and we can also put the component anywhere we want with just designing. 
 
-We also included a separate button to start the program quickly and avoid accidentally moving the robot while trying to push the start button. Our robot has two servos, one on the bottom front and one on the top front. The bottom front servo is used to steer the wheel, and we had to remake the front part of the robot because we faced a problem during the national round. The robot was too slim, and when we steered too much, it acted like a brake, making it difficult to maneuver. So, we made the robot slightly larger to prevent this issue.
+3D printing is also not easy since we need to be precise; every hole and component size must fit into places we want. We failed a few times before coming up with the design we use now. After finishing designing, we printed it out to see the result with our own 3D printer and using ABS filaments. The robot color also shouldn't be green and red since the camera can be confused with the obstracle.
 
-Finally, we added a top servo that rotates our ultrasonic. Initially, we thought of using two ultrasonics, but we realized that the waves could hit each other, making the received data inaccurate. Therefore, we designed our robot to have a single ultrasonic, which ensured that the data we received was precise. 
+For the design, we placed the gyro around the middle-top of the robot to get the most accurate output, while the camera was positioned at the front of the gyro to detect objects quickly.
 
-Additionally, the rules also said that:
-
-The vehicle's dimensions must not exceed 300x200 mm, with a height limit of 300 mm.
-The weight of the vehicle must not exceed 1.5 kilograms.
+ Our robot has two servos, one on the bottom front and one on the top front. The bottom front servo is used to steer the wheel. Then, we added a top servo that rotates our ultrasonic. We use an ultrasonic to keep our robot out of the wall. Finally, we place our motor at the bottom back of the robot, and to ensure that it drives both wheels at the back, we use a gear differential from Lego.
 
 ### Our robot components
    ### Movement Parts
