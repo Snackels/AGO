@@ -125,7 +125,7 @@ For the design, we placed the gyro around the middle-top of the robot to get the
 <br><br>
 
 - ## **Motor Shield** : Gravity 2x2A Motor Shield for Arduino Twin
-<img src = "" width = "400">
+<img src = "https://github.com/LEST0808/YBR_AGO-Photos/blob/main/motorshield%20(2).png?raw=true" width = "400">
 
 | Specification            | Value                                  |
 |--------------------------|----------------------------------------|
@@ -142,7 +142,7 @@ For the design, we placed the gyro around the middle-top of the robot to get the
 <br><br>
 
 - ## **Sensor Shield** : Gravity IO Sensor Shield For Arduino Mega Due
-<img src = "" width = "400">
+<img src = "https://github.com/LEST0808/YBR_AGO-Photos/blob/main/Sensor%20shield.png" width = "400">
 
 | Specification                               | Value                                         |
 |---------------------------------------------|-----------------------------------------------|
@@ -159,7 +159,7 @@ For the design, we placed the gyro around the middle-top of the robot to get the
 
 ### Power Management And Inspection
 - ## **Camera** : OpenMV Cam H7 R1
-<image src="" width = "400">
+<image src="https://github.com/LEST0808/YBR_AGO-Photos/blob/main/OpenMV.png" width = "400">
 
 #### STM32H743VI Specifications
 
