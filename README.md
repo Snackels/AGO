@@ -56,6 +56,63 @@ For the design, we placed the gyro around the middle-top of the robot to get the
  Our robot has two servos, one on the bottom front and one on the top front. The bottom front servo is used to steer the wheel. Then, we added a top servo that rotates our ultrasonic. We use an ultrasonic to keep our robot out of the wall. Finally, we place our motor at the bottom back of the robot, and to ensure that it drives both wheels at the back, we use a gear differential from Lego.
 
 ### Our robot components
+   ### Robot body
+   
+- ## **3D Printer** : Bambu Lab X1-Carbon 3D Printer.
+<image src="https://store.bambulab.com/cdn/shop/files/X1CC_07f4cfd7-8e58-464f-8851-ae6b34ef6c66_400x.png?v=1720164375" width = "400">
+
+### General Specifications
+
+| Specification         | Value                             |
+|-----------------------|-----------------------------------|
+| Build Volume          | 256 × 256 × 256 mm³*              |
+| Nozzle                | 0.4 mm Hardened Steel Included     |
+| Hotend                | All-Metal                          |
+| Max Hot End Temperature | 300 ℃                           |
+| Filament Diameter     | 1.75 mm                            |
+| Supported Filament    | PLA, PETG, TPU, ABS, ASA, PVA, PET |
+| Ideal for             | PA, PC, Carbon/Glass Fiber Reinforced Polymer |
+
+### Build Plate Specifications
+
+| Specification               | Value                           |
+|-----------------------------|---------------------------------|
+| Build Plate Surface         | Bambu Textured PEI Plate or Bambu Cool Plate (Pre-installed, Random, Both compatible with Micro Lidar) |
+| Max Build Plate Temperature | 110℃@220V, 120℃@110V            |
+
+### Tool Head Specifications
+
+| Specification               | Value      |
+|-----------------------------|------------|
+| Max Speed                   | 500 mm/s    |
+| Max Acceleration            | 20 m/s²     |
+
+### Physical Dimensions
+
+| Specification               | Value            |
+|-----------------------------|------------------|
+| X1C Dimensions              | 389 × 389 × 457 mm³ |
+| Package Size (X1C)          | 480 × 480 × 535 mm³ |
+| Net Weight (X1C)            | 14.13 kg         |
+| Gross Weight (X1C)          | 18 kg            |
+| Package Size (X1C Combo)    | 480 × 480 × 590 mm³ |
+| Gross Weight (X1C Combo, AMS included) | 22.3 kg |
+
+### Electrical Requirements
+
+| Specification   | Value             |
+|-----------------|-------------------|
+| Voltage         | 100-240 VAC       |
+| Frequency       | 50/60 Hz          |
+| Power Consumption | 1000W@220V, 350W@110V |
+
+<br><br>
+
+- ## **Filament** : Acrylonitrile Butadiene Styrene or simply known as *ABS*
+<image src="https://inwfile.com/s-ds/lzfjpv.png" width = "400">
+  
+<br><br>
+
    ### Movement Parts
    
 - ## **Driving motor** : Power functions Large-motor made by LEGO™.
@@ -291,6 +348,10 @@ For the design, we placed the gyro around the middle-top of the robot to get the
 
 <br><br>
 
+- ## **Touch Sensor** : ZX-Switch01 by INEX
+<img src = "https://github.com/LEST0808/AGO-Photos/blob/main/ZX%20switch.png?raw=true" width = "400">
+
+<br><br>
 
 - ## **Step-down** : HW-360 V6.0
 <img src = "https://github.com/LEST0808/POP32ph/blob/main/Stepdown.png" width = "400">
