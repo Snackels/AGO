@@ -33,7 +33,7 @@ With obstacle
 </p>
 <p align="center">
 
-*YBR-AGO* comprises three students from Yothinburana School. Our team consists of two members from year 11 and one from year 10. Last year, we achieved 7th place on the international stage. We learned from our mistake and we used that as an advantage to enhance our robot’s design and to improve our teamwork.
+*YBR-AGO* comprises three students from Yothinburana School. Our team consists of two members from year 11 and one from year 10. Last year, Vichaiwat and Vorawet secured first place in Thailand national stage with team YBR-GPA4.0 while Chaiwat came in second with the team YBR-BOO.
 
 Here are the team members.
 
