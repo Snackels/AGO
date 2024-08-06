@@ -35,13 +35,13 @@ With obstacle
 
 *YBR-AGO* comprises three students from Yothinburana School. Our team consists of two members from year 11 and one from year 10. Last year, Vichaiwat and Vorawet secured first place in Thailand national stage with team YBR-GPA4.0 while Chaiwat came in second with the team YBR-BOO.
 
-Here are the team members.
+Here are the team members from left to right.
 
-1. Vorawet Narkglom, 16 years old.
+1. Vichaiwat Koonsap, 16 years old.
 
 2. Chaiwat Chinsupawat, 15 years old.
 
-3. Vichaiwat Koonsap, 16 years old.
+3. Vorawet Narkglom, 16 years old.
 
 
 # **Part 2: Robot Design.**
