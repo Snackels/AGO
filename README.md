@@ -55,8 +55,6 @@ For the design, we placed the gyro around the middle-top of the robot to get the
 
  Our robot has two servos, one on the bottom front and one on the top front. The bottom front servo is used to steer the wheel. Then, we added a top servo that rotates our ultrasonic. We use an ultrasonic to keep our robot out of the wall. Finally, we place our motor at the bottom back of the robot, and to ensure that it drives both wheels at the back, we use a gear differential from Lego.
 
-lo.l
-
 ### Our robot components
    ### Robot body
    
