@@ -447,3 +447,50 @@ Following that, we use the SetSampleTime function to specify how frequently the 
 
 The subsequent lines involve using the pinMode function, which is a fundamental part of Arduino programming. It's used to configure the behavior of specific pins on an Arduino board. In our case, we set the servos as output, the ultrasonic sensor, light sensors, and button sensor as input.
 
+`fDistance` is a short for first distance. We put it in void setup to measure the distance between the ultrasonic and the wall at the start of the program. And we use that data to add it into a function called `getDistance`.
+
+Next line `while (!Serial);` is used to waits for the Serial communication to be established. It loops until the Serial interface is ready.
+
+The `servo.attach` is a command that attach the servo number to the pin. And the numbers specifies the minimum and maximum pulse widths or the servo. This sets up the servo to respond to commands within this range.
+
+The "steering" and "ultra servo" parts are set to 0 because, at the program's start, we need the servos to be in their initial positions before any movement. But the difference is "ultra servo" has letter "R" inside which indicate the side where we want the servo to turn at the start.
+
+As for `analogRead(Button)`, it corresponds to our button. When the value obtained from analogRead(3) is greater than 500, it indicates that the button has been pressed. In response, the compass is set to a zero yaw position. If the button is not pressed, the robot remains in its current state without making any adjustments.
+
+### Fourth Section [qualification round]
+```c++
+void loop() {
+  //(❁´◡`❁);
+  motor(4, 20);
+  delay(400);
+  motor(4, 100);
+  while (analogRead(BUTTON) > 500) {
+    getTaco();
+    line_detection();
+    int wall_distance = getDistance();
+    motor_and_steer((1 * x) * compassPID.Run((x * pvYaw) + ((wall_distance - 15.5) * 1.2) * ((float(TURN == 'TURN') - 0.5) * 2)));
+    ultra_servo(-pvYaw, TURN);
+    if (count >= 12) {
+      long timer01 = millis();
+      while (millis() - timer01 < 1000) {
+        getTaco();
+        line_detection();
+        motor_and_steer((1 * x) * compassPID.Run((x * pvYaw) + ((wall_distance - 15.5) * 1.2) * ((float(TURN == 'TURN') - 0.5) * 2)));
+        ultra_servo(-pvYaw, TURN);
+      }
+      motor(4, 0);
+      while (true) {
+      }
+    }
+    // motor_and_steer(-1 * compassPID.Run(-pvYaw + ((wall_distance - 25) * 1) * ((float(TURN == 'R') - 0.5) * 2)));
+    // ultra_servo(-pvYaw,'TURN');
+  }
+  motor(4, 0);
+  while (analogRead(BUTTON) <= 500)
+    ;
+  while (analogRead(BUTTON) > 500)
+    ;
+  while (analogRead(BUTTON) <= 500)
+    ;
+}
+```
