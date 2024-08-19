@@ -47,76 +47,21 @@ Here are the team members from left to right.
 # **Part 2: Robot Design.**
 ### The Robot
 
-Designing a robot for this competition is sometime hard. We need to design it to be compact, lightweight, durable, and have all the functions we need. The robot must be four-wheeled with a steering function on either front or back wheel, which is why we need to be careful to pick the components. After we select all the components we need, then we think about how to put them all together. We came up with two choices. The first is with Lego Technic parts, but due to its size and weigh,which must be 300x200mm and 300mm in height, that makes it hard to design a compact robot. So we decided to use a 3D-printed robot for more lightweight, and we can also put the component anywhere we want with just designing. 
+Designing a robot for this competition is sometimes hard. We need to design it to be compact, lightweight, durable, and have all the functions we need. The robot must be four-wheeled with a steering function on either front or back wheel, which is why we need to be careful to pick the components. After we select all the components we need, then we think about how to put them all together. We came up with using Lego Technic parts. We spent a lot of time designing it to be within the size regulation. 
 
-3D printing is also not easy since we need to be precise; every hole and component size must fit into places we want. We failed a few times before coming up with the design we use now. After finishing designing, we printed it out to see the result with our own 3D printer and using ABS filaments. The robot color also shouldn't be green and red since the camera can be confused with the obstracle.
+Designing a robot using Lego parts is also not easy since we need to think about everything. Every part we put in includes weight, which makes the robot slower. We failed a few times before coming up with the design we use now. After finishing designing, we combined it with other components to see the result. he robot's color also shouldn't be green and red since the camera can confuse it with the obstracle.
 
 For the design, we placed the gyro around the middle-top of the robot to get the most accurate output, while the camera was positioned at the front of the gyro to detect objects quickly.
 
- Our robot has two servos, one on the bottom front and one on the top front. The bottom front servo is used to steer the wheel. Then, we added a top servo that rotates our ultrasonic. We use an ultrasonic to keep our robot out of the wall. Finally, we place our motor at the bottom back of the robot, and to ensure that it drives both wheels at the back, we use a gear differential from Lego.
+Our robot has two servos, one on the bottom front and one on the top front. The bottom front servo is used to steer the wheel. Then, we added a top servo that rotates our ultrasonic. We use an ultrasonic to keep our robot out of the wall. Finally, we place our motor at the bottom back of the robot, and to ensure that it drives both wheels at the back, we use a gear differential from Lego.
 
 ### Our robot components
-   ### Robot body
-   
-- ## **3D Printer** : Bambu Lab X1-Carbon 3D Printer.
-<image src="https://store.bambulab.com/cdn/shop/files/X1CC_07f4cfd7-8e58-464f-8851-ae6b34ef6c66_400x.png?v=1720164375" width = "400">
-
-### General Specifications
-
-| Specification         | Value                             |
-|-----------------------|-----------------------------------|
-| Build Volume          | 256 × 256 × 256 mm³*              |
-| Nozzle                | 0.4 mm Hardened Steel Included     |
-| Hotend                | All-Metal                          |
-| Max Hot End Temperature | 300 ℃                           |
-| Filament Diameter     | 1.75 mm                            |
-| Supported Filament    | PLA, PETG, TPU, ABS, ASA, PVA, PET |
-| Ideal for             | PA, PC, Carbon/Glass Fiber Reinforced Polymer |
-
-### Build Plate Specifications
-
-| Specification               | Value                           |
-|-----------------------------|---------------------------------|
-| Build Plate Surface         | Bambu Textured PEI Plate or Bambu Cool Plate (Pre-installed, Random, Both compatible with Micro Lidar) |
-| Max Build Plate Temperature | 110℃@220V, 120℃@110V            |
-
-### Tool Head Specifications
-
-| Specification               | Value      |
-|-----------------------------|------------|
-| Max Speed                   | 500 mm/s    |
-| Max Acceleration            | 20 m/s²     |
-
-### Physical Dimensions
-
-| Specification               | Value            |
-|-----------------------------|------------------|
-| X1C Dimensions              | 389 × 389 × 457 mm³ |
-| Package Size (X1C)          | 480 × 480 × 535 mm³ |
-| Net Weight (X1C)            | 14.13 kg         |
-| Gross Weight (X1C)          | 18 kg            |
-| Package Size (X1C Combo)    | 480 × 480 × 590 mm³ |
-| Gross Weight (X1C Combo, AMS included) | 22.3 kg |
-
-### Electrical Requirements
-
-| Specification   | Value             |
-|-----------------|-------------------|
-| Voltage         | 100-240 VAC       |
-| Frequency       | 50/60 Hz          |
-| Power Consumption | 1000W@220V, 350W@110V |
-
-<br><br>
-
-- ## **Filament** : Acrylonitrile Butadiene Styrene or simply known as *ABS*
-<image src="https://inwfile.com/s-ds/lzfjpv.png" width = "400">
   
-<br><br>
-
    ### Movement Parts
    
 - ## **Driving motor** : Power functions Large-motor made by LEGO™.
 <image src="https://github.com/LEST0808/POP32ph/blob/main/Motor.png" width = "400">
+It's a simple motor, and we chose this motor because of its easy connection to our robot and its cost-effectiveness. This motor is small yet powerful. and it is the perfect size for our robot. The motor comes with a dedicated port for Lego. So, we modified it to make it able to connect to the board. 
 
 ### Electrical Specifications
 
@@ -128,13 +73,14 @@ For the design, we placed the gyro around the middle-top of the robot to get the
 
 | Specification     | Value    |
 |-------------------|----------|
-| Speed             | 380 rpm  |
+| Speed             | 390 rpm  |
 | Maximum torque    | 40 Ncm   |
 
 <br><br>
 
 - ## **Servo** : GEEKSERVO 2kg 360 Degrees servo.
 <image src="https://github.com/LEST0808/POP32ph/blob/main/Servo%201.png" width = "400">
+We use this servo for steering the robot and employ an Ultrasonic Sensor for rotation. This servo is compatible with LEGO, making it easy and convenient to build the robot.
 
 ### Electrical Specifications
 
