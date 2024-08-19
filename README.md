@@ -499,4 +499,4 @@ In this section, we start with a button press. When the button is pressed, the r
 
 After that, we set the speed of the robot to be 100. Next line is a function called start. It is used to handle the adjustment of the robot’s steering and ultrasonic sensor based on its current state and sensor readings, provided LineDetect is not 1. 
 
-Now, the main program we also use a function called `steering servo`. Inside that function it contains a formula of how we walk. Here is a quick break down, 
+Now, the main program we also use a function called `steering servo`. Inside that function it contains a formula of how we walk. Here is a quick break down, we start off with `Compass.PID.Run`. This code was a part of the library PID.v2 that applied a PID formula into compass. Then inside the bracket it contains the addition of variable `pvYaw` and a function called `getDistance` minus by the distance away from the wall. and outside that bracket multiply by
