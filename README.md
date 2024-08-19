@@ -33,7 +33,7 @@ With obstacle
 </p>
 <p align="center">
 
-*YBR-AGO* comprises three students from Yothinburana School. Our team consists of two members from year 11 and one from year 10. Last year, Vichaiwat and Vorawet secured first place in Thailand national stage with team YBR-GPA4.0 while Chaiwat came in second with the team YBR-BOO.
+*YBR-AGO* comprises three students from Yothinburana School. Our team consists of two members from year 11 and one from year 10. Last year, Vichaiwat and Vorawet secured first place in Thailand national stage with team YBR-GPA4.0 while Chaiwat came in second with the team YBR-BOO. We all made it into international round as Thailand representative. Sadly, Vichaiwat and Vorawet in team called Sunflower secured 7th place and Chaiwat in Zenith secured the 8th. Now we know what we should do to prevent that from happening again and try our best to win that first place.
 
 Here are the team members from left to right.
 
