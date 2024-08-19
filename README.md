@@ -343,4 +343,107 @@ There are a lot of wheels to select. We chose this one because of it's size. If 
 
 <br><br>
 
- 
+ # **Part 3: Program explanation**
+
+We have developed two programs for our upcoming competition. Each program is designed for a different round - the qualification round and the final round. The first program includes two subprograms that are also included in the program for the final round. Each subprogram is made up of a main program and a function. 
+
+### First Section [qualification round]
+```c++
+#include "Mapf.h"
+#include <Servo.h>
+#include <PID_v2.h>
+```
+In our program, we begin by including several libraries. One such library is Mapf.h, which extends the Arduino map() function and provides floating point reading from function mapf() and changes any ADC resolution input reading to any voltage output with mapf_ADC(). Another library we include is servo.h, which enables our controller boards to control a variety of servo motors. This library is capable of controlling a great number of servos. Additionally, we use PID_v2.h, which is a PID controller that seeks to keep some input variable close to a desired setpoint by adjusting an output. The way in which it does this can be 'tuned' by adjusting three parameters (P, I, D).
+
+### Second Section [qualification round]
+```c++
+Servo servo1;
+Servo servo2;
+
+//motor
+/**set control port**/
+const int E1Pin = 10;
+const int M1Pin = 12;
+/**inner definition**/
+typedef struct {
+  byte enPin;
+  byte directionPin;
+} MotorContrl;
+
+const int M1 = 0;
+const int M2 = 1;
+const int MotorNum = 1;
+
+const MotorContrl MotorPin[] = { E1Pin, M1Pin };
+
+const int Forward = LOW;
+const int Backward = HIGH;
+
+// Servos
+int const Steer_Servo = 25;
+int const Ultra_servo = 26;
+// Ultrasonic
+int const Ultra = A9;
+int fDistance;
+// Light sensor
+int const Red_sen = A7;
+int const Blue_sen = A8;
+// Button
+int const Button = A6;
+//Compass Variable
+float pvYaw, pvRoll, pvPitch;
+uint8_t rxCnt = 0, rxBuf[8];
+//PID
+PID_v2 CompassPID(0.6, 0, 0.025, PID::Direct);
+//Field config
+char TURN = 'U';
+long detect_line_timer;
+int LineCounter = 0;
+int compass_offset = 0;
+int LineDetect = 0;
+```
+This section declares the ports for each component. We start by setting the control port for the motor. Next, we create a structure that controls the motor and its associated pins. After that, we declare the servo ports for both the steering and ultrasonic servos. Then, we specify the pins for the ultrasonic sensor, light sensors, and button sensor.
+
+Following that, we declare variables for the compass: `pvYaw, pvRoll, and pvPitch` to store compass data. `rxCnt` is a counter for receiving data, and `rxBuf` is a buffer (array) for storing the received data.
+
+Finally, this part of the code uses the PID_v2 library to help the robot drive straight by employing PID (Proportional-Integral-Derivative) control to correct for oversteering. The last section defines the field configuration, which will be used later in the program.
+
+### Third Section [qualification round]
+```c++
+void setup() {
+  Serial.begin(115200);
+  CompassPID.Start(0, 0, 0);
+  CompassPID.SetOutputLimits(-180, 180);
+  CompassPID.SetSampleTime(10);
+  pinMode(Steer_Servo, OUTPUT);
+  pinMode(Ultra_servo, OUTPUT);
+  pinMode(Ultra, INPUT);
+  pinMode(Red_sen, INPUT);
+  pinMode(Blue_sen, INPUT);
+  pinMode(Button, INPUT);
+  initMotor();
+  //First Value
+  fDistance = getDistance();
+  while (!Serial)
+    ;
+  servo1.attach(Ultra_servo, 500, 2400);
+  servo2.attach(Steer_Servo, 500, 2500);
+  ultra_servo(0, 'R');
+  steering_servo(0);
+  while (analogRead(Button) > 500)
+    ;
+  zeroYaw();
+  while (analogRead(Button) <= 500)
+    ;
+}
+```
+This section corresponds to the "Void Setup" part of our program. In the first line is `Serial.begin(115200);`, this function is a standard instruction in Arduino programming. It initializes serial communication between the Arduino board and a connected computer or another device.
+
+Then, we initialize the PID (Proportional-Integral-Derivative) controller that we set up in an earlier section.
+
+The next step is to use the SetOutputLimit function, which allows us to define the compass's limits. Typically, a compass can rotate 360 degrees. However, we modify this range to -180 to 180 degrees, making it easier to control.
+
+Following that, we use the SetSampleTime function to specify how frequently the PID controller will perform its calculations and apply control actions. In our code, we've configured it to run every 10 units of time.
+
+The subsequent lines involve using the pinMode function, which is a fundamental part of Arduino programming. It's used to configure the behavior of specific pins on an Arduino board. In our case, we set the servos as output, the ultrasonic sensor, light sensors, and button sensor as input.
+
