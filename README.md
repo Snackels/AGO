@@ -460,37 +460,43 @@ As for `analogRead(Button)`, it corresponds to our button. When the value obtain
 ### Fourth Section [qualification round]
 ```c++
 void loop() {
-  //(❁´◡`❁);
-  motor(4, 20);
-  delay(400);
-  motor(4, 100);
-  while (analogRead(BUTTON) > 500) {
-    getTaco();
-    line_detection();
-    int wall_distance = getDistance();
-    motor_and_steer((1 * x) * compassPID.Run((x * pvYaw) + ((wall_distance - 15.5) * 1.2) * ((float(TURN == 'TURN') - 0.5) * 2)));
-    ultra_servo(-pvYaw, TURN);
-    if (count >= 12) {
-      long timer01 = millis();
-      while (millis() - timer01 < 1000) {
-        getTaco();
-        line_detection();
-        motor_and_steer((1 * x) * compassPID.Run((x * pvYaw) + ((wall_distance - 15.5) * 1.2) * ((float(TURN == 'TURN') - 0.5) * 2)));
+  while (analogRead(Button) > 500) {
+    getIMU();
+    Color_detection();
+    // Serial.print("red");
+    // Serial.print(analogRead(Red_sen));
+    // Serial.print("blue");
+    // Serial.println(analogRead(Blue_sen));
+    motor(100);
+    start();
+    //Serial.println(pvYaw);
+    steering_servo(CompassPID.Run(pvYaw + ((getDistance() - 30)) * ((float(TURN == 'R') - 0.5) * 2)));
+    ultra_servo(pvYaw, TURN);
+    if (LineCounter >= 12) {
+      long TimerLine = millis();
+      while (millis() - TimerLine < 920) {
+        getIMU();
+        Color_detection();
+        steering_servo(CompassPID.Run(pvYaw + ((getDistance() - 30)) * ((float(TURN == 'R') - 0.5) * 2)));
         ultra_servo(-pvYaw, TURN);
       }
-      motor(4, 0);
+      motor(0);
       while (true) {
       }
     }
-    // motor_and_steer(-1 * compassPID.Run(-pvYaw + ((wall_distance - 25) * 1) * ((float(TURN == 'R') - 0.5) * 2)));
-    // ultra_servo(-pvYaw,'TURN');
   }
-  motor(4, 0);
-  while (analogRead(BUTTON) <= 500)
+
+  while (analogRead(Button) <= 500) {
+    motor(0);
+  }
+  while (analogRead(Button) > 500)
     ;
-  while (analogRead(BUTTON) > 500)
-    ;
-  while (analogRead(BUTTON) <= 500)
+  while (analogRead(Button) <= 500)
     ;
 }
 ```
+In this section, we start with a button press. When the button is pressed, the robot retrieves data from the IMU (Inertial Measurement Unit) through the function `getIMU`. Subsequently, the robot begins line detection using the `Color_detection` function. 
+
+After that, we set the speed of the robot to be 100. Next line is a function called start. It is used to handle the adjustment of the robot’s steering and ultrasonic sensor based on its current state and sensor readings, provided LineDetect is not 1. 
+
+Now, the main program we also use a function called `steering servo`. Inside that function it contains a formula of how we walk. Here is a quick break down, 
