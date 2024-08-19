@@ -98,14 +98,15 @@ The wires are a standard servo pinout -
 | Stall current     | 700mA    |
 | Sliding current   | 450mA    |
 
-- ## **Gearbox** : Technic, gear differential with inner tabs and closed center, 28 bevel teeth
-
+- ## **Differential** : Technic, gear differential with inner tabs and closed center, 28 bevel teeth
 <image src = "https://github.com/LEST0808/Sunflower-Photos/blob/main/Gear_3.png" width = "400">
+This part ensure that both wheels have the power from the motor, which makes the robot drive forward. This part has gear teeth on the side, which are connected to the gear we put on the motor earlier, and then we put 3 small gears inside the differential. The differential is attached to the main body using an axle from the wheel.
 
 <br><br>
 
 - ## **Wheel** : Lego 49.5 × 20 tire and 30 × 20 rim
 <image src = "https://github.com/LEST0808/Sunflower-Photos/blob/main/Wheel.png" width = "400">
+There are a lot of wheels to select. We chose this one because of it's size. If the wheels are too small, it reduces the speed due to the lack of rotation. But if the wheels are too big, it makes the robot slower and harder to control. With the combination of the motor and the wheels, the robot can maintain the speed we can control.
 
 <br><br>
 
