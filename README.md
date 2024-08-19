@@ -80,7 +80,13 @@ It's a simple motor, and we chose this motor because of its easy connection to o
 
 - ## **Servo** : GEEKSERVO 2kg 360 Degrees servo.
 <image src="https://github.com/LEST0808/POP32ph/blob/main/Servo%201.png" width = "400">
-We use this servo for steering the robot and employ an Ultrasonic Sensor for rotation. This servo is compatible with LEGO, making it easy and convenient to build the robot.
+We use this servo for steering the robot and employ an ultrasonic sensor for rotation. This servo is compatible with LEGO, making it easy and convenient to build the robot by just putting studs in the hole on the side. We like how you can connect two axles to the dual outputs on this servo so you can power two wheels or gears, or mount the servo securely inside articulated limbs and other contraptions. Additionally, the gears inside these servos will 'slip' when the blocking load is too high instead of jamming, helping avoid damage to your servos and boards.
+
+The wires are a standard servo pinout - 
+-	Red - positive
+-	Brown - negative
+-	Yellow - data
+
 
 ### Electrical Specifications
 
@@ -93,6 +99,7 @@ We use this servo for steering the robot and employ an Ultrasonic Sensor for rot
 | Sliding current   | 450mA    |
 
 - ## **Gearbox** : Technic, gear differential with inner tabs and closed center, 28 bevel teeth
+
 <image src = "https://github.com/LEST0808/Sunflower-Photos/blob/main/Gear_3.png" width = "400">
 
 <br><br>
