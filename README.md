@@ -117,7 +117,7 @@ There are a lot of wheels to select. We chose this one because of it's size. If 
  ### Controller
 - ## **Microcontroller Board** : Arduino Mega 2560 R3
 <img src = "https://github.com/Snackels/FutureEngineer2024_YBR_AGO/blob/main/Robot/Parts/Mega.png" width = "400">
-This part is like a brain of our body. It's job is to store all the program of our robot from the computer, every components in the robot comes through here. We chose this board because of it's connection port. We used Arduino Uno last year, but the problem is there's not enough port for OpenMV and GY-25. But there's some disadvantage in this board. Because this board has a lot of connection port, it comes with weight and size. It's almost 2 times longer than the UNO. And that makes the robot long and heavy.
+This part is like a brain of our body. It's job is to store all the program of our robot from the computer, every components in the robot comes through here. We chose this board because of it's connection port, it contains tons of ports that we want such as 3 UART port. We used Arduino Uno last year, but the problem is there's not enough port for OpenMV and GY-25. But there's some disadvantage in this board. Because this board has a lot of connection port, it comes with weight and size. It's almost 2 times longer than the UNO. And that makes the robot long and heavy.
 
 | Specification           | Value                                  |
 |-------------------------|----------------------------------------|
@@ -137,6 +137,12 @@ This part is like a brain of our body. It's job is to store all the program of o
 | Length                  | 101.52 mm                               |
 | Width                   | 53.3 mm                                 |
 | Weight                  | 37 g                                    |
+
+Additional info about UART:
+UART operates by transmitting data as a series of bits, including a start bit, data bits, an optional parity bit, and stop bit(s). Unlike parallel communication, where multiple bits are transmitted simultaneously, UART sends data serially, one bit at a time. As the name reveals the protocol operates asynchronous which means that it doesn't rely on a shared clock signal. Instead, it uses predefined baud rates to determine the timing of data bits.
+<img src = "https://docs.arduino.cc/static/d3a2c9ad97f1b7479b997e8d89426aaf/a6d36/parallelSerial.png" width = "400">
+
+Our robot has serial and serial3, serial is connected to compass while serial3 is connected to OpenMV camera. They are connected to the UART port on the Arduino mega
 
 <br><br>
 
@@ -470,25 +476,19 @@ void setup() {
     ;
 }
 ```
-This section corresponds to the "Void Setup" part of our program. In the first line is `Serial.begin(115200);`, this function is a standard instruction in Arduino programming. It initializes serial communication between the Arduino board and a connected computer or another device.
+This section is about the "Void Setup" part of our program. The first line is `Serial.begin(115200);`, this function is a standard instruction in Arduino programming. It initializes serial communication between the Arduino board and a connected computer. Then, we initialize the PID(Proportional-Integral-Derivative) controller that declared in the earlier section.
 
-Then, we initialize the PID (Proportional-Integral-Derivative) controller that we set up in an earlier section.
-
-The next step is to use the SetOutputLimit function, which allows us to define the compass's limits. Typically, a compass can rotate 360 degrees. However, we modify this range to -180 to 180 degrees, making it easier to control.
-
-Following that, we use the SetSampleTime function to specify how frequently the PID controller will perform its calculations and apply control actions. In our code, we've configured it to run every 10 units of time.
-
-The subsequent lines involve using the pinMode function, which is a fundamental part of Arduino programming. It's used to configure the behavior of specific pins on an Arduino board. In our case, we set the servos as output, the ultrasonic sensor, light sensors, and button sensor as input.
+The next step is to use the SetOutputLimit function, which allows us to define the compass's limits. Normally, a compass can rotate 360 degrees. But we changed that range into -180 to 180 degrees to make it easier to control. Following that, we use the SetSampleTime function to specify how frequently the PID controller will perform its calculations and apply control actions. In our code, we've configured it to run every 10 units of time. The subsequent lines involve using the pinMode function, which is a fundamental part of Arduino programming. It's used to set up the behavior of the component pins on an Arduino board. In our case, we set the servos as output, the ultrasonic sensor, light sensors, and button sensor as input.
 
 `fDistance` is a short for first distance. We put it in void setup to measure the distance between the ultrasonic and the wall at the start of the program. And we use that data to add it into a function called `getDistance`.
 
-Next line `while (!Serial);` is used to waits for the Serial communication to be established. It loops until the Serial interface is ready.
+Next line `while (!Serial);` is used to wait for the Serial communication to be established. It loops until the Serial interface is ready.
 
-The `servo.attach` is a command that attach the servo number to the pin. And the numbers specifies the minimum and maximum pulse widths or the servo. This sets up the servo to respond to commands within this range.
+The `servo.attach` is a command that attach the servo number to the pin. And the numbers specifies the minimum and maximum pulse widths of the servo. This sets up the servo to respond to commands within this range.
 
-The "steering" and "ultra servo" parts are set to 0 because, at the program's start, we need the servos to be in their initial positions before any movement. But the difference is "ultra servo" has letter "R" inside which indicate the side where we want the servo to turn at the start.
+The "steering" and "ultra servo" parts are set to 0 because, at the program's start, we need the servos to be in their initial positions before any movement. But the difference is "ultra servo" has letter "R" inside which indicate the side where we want the servo to turn at the when the robot start.
 
-As for `analogRead(Button)`, it corresponds to our button. When the value obtained from analogRead(3) is greater than 500, it indicates that the button has been pressed. In response, the compass is set to a zero yaw position. If the button is not pressed, the robot remains in its current state without making any adjustments.
+As for `analogRead(Button)`, it corresponds to our button. When the value obtained from analogRead(3) is more than 500, it means that the button has been pressed. In response, the compass is set to a zero yaw position. If the button is not pressed, the robot remains in its current state without making any adjustments.
 
 ### Fourth Section [Without Obstracle]
 ```c++
@@ -740,9 +740,52 @@ void start() {
 
 ### OpenMV 
 
-Our OpenMV code.
+Our OpenMV GLCD code.
 
 ```py
+import sensor, image, time
+import display
+from pyb import UART
 
+sensor.reset()
+sensor.set_pixformat(sensor.RGB565)
+sensor.set_framesize(sensor.QVGA)  # 320x240 max size 76,800
+sensor.skip_frames(time=1000)
+sensor.set_auto_gain(False)  # Must be turned off for color tracking
+sensor.set_auto_whitebal(False)  # Must be turned off for color tracking
+sensor.set_auto_exposure(False)
+
+GreenThresholds = [(57, 0, -10, -128, 14, 127)]
+RedThresholds = [(100, 0, 38, 127, -127, 127)]
+
+uart = UART(3, 19200)
+clock = time.clock()
+
+# Initialize LCD using SPI Display
+lcd = display.SPIDisplay()
+
+while(True):
+    clock.tick()
+    img = sensor.snapshot()
+
+    GreenBob = img.find_blobs(GreenThresholds, pixels_threshold=200, area_threshold=200, merge=True, margin=5)
+    if GreenBob:
+        LargestGreenBob = max(GreenBob, key=lambda b: b.area())
+        img.draw_rectangle(LargestGreenBob.rect(), color=(0, 255, 0))
+        img.draw_cross(LargestGreenBob.cx(), LargestGreenBob.cy(), color=(0, 255, 0))
+        uart.write("%d,%d,%d,%c,    \n" % (LargestGreenBob.cx(), LargestGreenBob.cy(), LargestGreenBob.area(), "G",))
+
+    RedBob = img.find_blobs(RedThresholds, pixels_threshold=200, area_threshold=200, merge=True, margin=5)
+    if RedBob:
+        LargestRedBob = max(RedBob, key=lambda b: b.area())
+        img.draw_rectangle(LargestRedBob.rect(), color=(255, 0, 0))
+        img.draw_cross(LargestRedBob.cx(), LargestRedBob.cy(), color=(255, 0, 0))
+        uart.write("%d,%d,%d,%c,\n" % (LargestRedBob.cx(), LargestRedBob.cy(), LargestRedBob.area(), "R",))
+
+    lcd.write(img)
+
+    if uart.any():
+        data = uart.readline()
+        print("Received:", data)
 ```
-- **Description**: This program is use to set the direction of the motor. There's 2 input. First is the motor port connection. Second is the direction the robot is heading.
+We use this code with our OpenMV camera. It is for setting up the GLCD camera to display what the camera sees and add a box around the obstracle to make sure that the camera sees the box. 
