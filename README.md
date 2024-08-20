@@ -64,7 +64,7 @@ Our robot has two servos, one on the bottom front and one on the top front. The 
    ### Movement Parts
    
 - ## **Driving motor** : Power functions Large-motor made by LEGO™.
-<image src="https://github.com/LEST0808/POP32ph/blob/main/Motor.png" width = "400">
+<image src="https://github.com/Snackels/FutureEngineer2024_YBR_AGO/blob/main/Robot/Parts/Motor.png" width = "400">
 It's a simple motor, and we chose this motor because of its easy connection to our robot and its cost-effectiveness. This motor is small yet powerful. and it is the perfect size for our robot. The motor comes with a dedicated port for Lego. So, we modified it to make it able to connect to the board. 
 
 ### Electrical Specifications
@@ -83,7 +83,7 @@ It's a simple motor, and we chose this motor because of its easy connection to o
 <br><br>
 
 - ## **Servo** : GEEKSERVO 2kg 360 Degrees servo.
-<image src="https://github.com/LEST0808/POP32ph/blob/main/Servo%201.png" width = "400">
+<image src="https://github.com/Snackels/FutureEngineer2024_YBR_AGO/blob/main/Robot/Parts/Servo%201.png" width = "400">
 We use this servo for steering the robot and employ an ultrasonic sensor for rotation. This servo is compatible with LEGO, making it easy and convenient to build the robot by just putting studs in the hole on the side. We like how you can connect two axles to the dual outputs on this servo so you can power two wheels or gears, or mount the servo securely inside articulated limbs and other contraptions. Additionally, the gears inside these servos will 'slip' when the blocking load is too high instead of jamming, helping avoid damage to your servos and boards.
 
 The wires are a standard servo pinout - 
@@ -103,20 +103,20 @@ The wires are a standard servo pinout -
 | Sliding current   | 450mA    |
 
 - ## **Differential** : Technic, gear differential with inner tabs and closed center, 28 bevel teeth
-<image src = "https://github.com/LEST0808/Sunflower-Photos/blob/main/Gear_3.png" width = "400">
+<image src = "https://github.com/Snackels/FutureEngineer2024_YBR_AGO/blob/main/Robot/Parts/Gear_3%20(1).png" width = "400">
 This part ensure that both wheels have the power from the motor, which makes the robot drive forward. This part has gear teeth on the side, which are connected to the gear we put on the motor earlier, and then we put 3 small gears inside the differential. The differential is attached to the main body using an axle from the wheel.
 
 <br><br>
 
 - ## **Wheel** : Lego 49.5 × 20 tire and 30 × 20 rim
-<image src = "https://github.com/LEST0808/Sunflower-Photos/blob/main/Wheel.png" width = "400">
+<image src = "https://github.com/Snackels/FutureEngineer2024_YBR_AGO/blob/main/Robot/Parts/Wheel%20(1).png" width = "400">
 There are a lot of wheels to select. We chose this one because of it's size. If the wheels are too small, it reduces the speed due to the lack of rotation. But if the wheels are too big, it makes the robot slower and harder to control. With the combination of the motor and the wheels, the robot can maintain the speed we can control.
 
 <br><br>
 
  ### Controller
 - ## **Microcontroller Board** : Arduino Mega 2560 R3
-<img src = "https://github.com/LEST0808/Sunflower-Photos/blob/main/Mega.png?raw=true" width = "400">
+<img src = "https://github.com/Snackels/FutureEngineer2024_YBR_AGO/blob/main/Robot/Parts/Mega.png" width = "400">
 This part is like a brain of our body. It's job is to store all the program of our robot from the computer, every components in the robot comes through here. We chose this board because of it's connection port. We used Arduino Uno last year, but the problem is there's not enough port for OpenMV and GY-25. But there's some disadvantage in this board. Because this board has a lot of connection port, it comes with weight and size. It's almost 2 times longer than the UNO. And that makes the robot long and heavy.
 
 | Specification           | Value                                  |
@@ -141,7 +141,7 @@ This part is like a brain of our body. It's job is to store all the program of o
 <br><br>
 
 - ## **Sensor Shield** : Gravity IO Sensor Shield For Arduino Mega Due
-<img src = "https://github.com/LEST0808/YBR_AGO-Photos/blob/main/Sensor%20shield.png" width = "400">
+<img src = "https://github.com/Snackels/FutureEngineer2024_YBR_AGO/blob/main/Robot/Parts/Sensor%20shield.png" width = "400">
 This part is an extension of the board. It is where ultrasonic, light sensors, button sensors, camera, compass, and servos go. It has alot of connection pin which can be used for each components. But with that it also come with a very long design. Make it hard to design where to place it on robot.
 
 | Specification                               | Value                                         |
@@ -158,7 +158,7 @@ This part is an extension of the board. It is where ultrasonic, light sensors, b
 <br><br>
 
 - ## **Motor Shield** : Gravity 2x2A Motor Shield for Arduino Twin
-<img src = "https://github.com/LEST0808/YBR_AGO-Photos/blob/main/motorshield%20(2).png?raw=true" width = "400">
+<img src = "https://github.com/Snackels/FutureEngineer2024_YBR_AGO/blob/main/Robot/Parts/Motorshield.png" width = "400">
 This part is also an extension of the board. It makes the connection between the board and motor easier. We connect the pin with the top of sensor shield.
 
 | Specification            | Value                                  |
@@ -177,7 +177,7 @@ This part is also an extension of the board. It makes the connection between the
 
 ### Power Management And Inspection
 - ## **Camera** : OpenMV Cam H7 R1
-<image src="https://github.com/LEST0808/YBR_AGO-Photos/blob/main/OpenMV.png" width = "400">
+<image src="https://github.com/Snackels/FutureEngineer2024_YBR_AGO/blob/main/Robot/Parts/OpenMV.png" width = "400">
 This component is very important for avoiding obstracle. It can detect red and green obstracle from distance to avoid crashing into it. The OpenMV also comes with it's own microcontroller. Making the robot locate and think faster when see the obstracle. The OpenMV also comes with GLCD screen at the back of it to display what the camera see. This camera can be coded with MicroPython. Additionally this camera wires connect with the sensor shield.
 
 #### STM32H743VI Specifications
@@ -242,8 +242,8 @@ This component is very important for avoiding obstracle. It can detect red and g
 
   <br><br>
 
-- ## **Ultra sonic sensor** : Gravity URM 09 ultrasonic distance sensor.
-<image src="https://github.com/LEST0808/POP32ph/blob/main/117270007.png" width = "400">
+- ## **Ultrasonic sensor** : Gravity URM 09 ultrasonic distance sensor.
+<image src="https://github.com/Snackels/FutureEngineer2024_YBR_AGO/blob/main/Robot/Parts/Ultra.png?raw=true" width = "400">
 The ultrasonic sensor plays a vital role in guiding the robot's navigation by accurately detecting distances between the robot and potential obstacles. Its precision in measuring distances ensures that the robot can maneuver and make informed decisions to navigate its path safely and effectively, avoiding collisions and maintaining its course.
 
 ### Electrical Specifications
@@ -266,7 +266,7 @@ The ultrasonic sensor plays a vital role in guiding the robot's navigation by ac
 <br><br>
 
 - ## **7.4 voltage Lipo-Battery** : 7.4 voltage 2 cell Lipo-Battery.
-<image src="https://github.com/LEST0808/POP32ph/blob/main/Bat.png" width = "400">
+<image src="https://github.com/Snackels/FutureEngineer2024_YBR_AGO/blob/main/Robot/Parts/Bat.png" width = "400">
 The battery provides the power for our robot. This battery is very lightweight and compact to fit into the robot since the robot is very small. And it is also able to connect to our controller board. We calculated the amount of mAh that is enough to power our robot for 1-2 hours before recharged.
 
 ### Specification
@@ -280,8 +280,12 @@ The battery provides the power for our robot. This battery is very lightweight a
 
 <br><br>
 
-- ## **Light Sensor** : Virus III by Design By Sopon
-<image src = "https://github.com/LEST0808/POP32ph/blob/main/Virus.png" width = "400">
+- ## **Light Sensor** : Virus III by Design By Sopon and ZX-03 By INEX
+<image src = "https://github.com/Snackels/FutureEngineer2024_YBR_AGO/blob/main/Robot/Parts/Virus%20(1).png?raw=true" width = "400">
+Virus III
+<image src = "https://github.com/Snackels/FutureEngineer2024_YBR_AGO/blob/main/Robot/Parts/Blue%20sensor.png" width = "400">
+ZX-03
+
 The color sensors play an important role in both rounds, as we use them for line detection. There are 2 lines with different colors in the corner of the race field, which is why we use 2 different colors of the color sensor, blue and red. The blue color sensor is used for detecting both colors, while the red color sensor is only used for the blue line.
 
 <br><br>
@@ -290,7 +294,7 @@ The color sensors play an important role in both rounds, as we use them for line
 A gyro is a component that enables a robot to determine its orientation and turn in the appropriate direction. We chose this gyro sensor specifically because of how effective it is. It also comes in a very small
 size to attach to our robot.
 
-<image src = "https://github.com/LEST0808/POP32ph/blob/main/gy25-tilt-sngle-sensor-oky3254.png" width = "400">
+<image src = "https://github.com/Snackels/FutureEngineer2024_YBR_AGO/blob/main/Robot/Parts/gy25-tilt-sngle-sensor-oky3254%20(1).png" width = "400">
 
 ### Specification
 
@@ -319,7 +323,7 @@ size to attach to our robot.
 - ## **Touch Sensor** : ZX-Switch01 by INEX
 This button gives us an easier way to start the robot. Since the controller board doesn't come with switches. So we found this button that could be attached to the frame outside the board using bolt. 
 
-<img src = "https://github.com/LEST0808/AGO-Photos/blob/main/ZX%20switch.png?raw=true" width = "400">
+<img src = "https://github.com/Snackels/FutureEngineer2024_YBR_AGO/blob/main/Robot/Parts/ZX%20switch.png" width = "400">
 
 <br><br>
 
@@ -333,7 +337,7 @@ This switch is for cutting the power from the battery to the robot. The regulati
 - ## **Step-down** : HW-360 V6.0
 This is a step-down DC-DC module. It comes with a status indicator light, a display screen that shows the voltage meter, and self-calibration of the voltage meter. The electrical voltage has an error of 0.05 V, with a measuring range of 0–40 V. We need this step down to show us how long until we need to recharge the battery.
 
-<img src = "https://github.com/LEST0808/POP32ph/blob/main/Stepdown.png" width = "400">
+<img src = "https://github.com/Snackels/FutureEngineer2024_YBR_AGO/blob/main/Robot/Parts/Stepdown%20(1).png" width = "400">
 
 <br><br>
 
