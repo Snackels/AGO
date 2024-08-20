@@ -140,9 +140,10 @@ This part is like a brain of our body. It's job is to store all the program of o
 
 Additional info about UART:
 UART operates by transmitting data as a series of bits, including a start bit, data bits, an optional parity bit, and stop bit(s). Unlike parallel communication, where multiple bits are transmitted simultaneously, UART sends data serially, one bit at a time. As the name reveals the protocol operates asynchronous which means that it doesn't rely on a shared clock signal. Instead, it uses predefined baud rates to determine the timing of data bits.
+
 <img src = "https://docs.arduino.cc/static/d3a2c9ad97f1b7479b997e8d89426aaf/a6d36/parallelSerial.png" width = "400">
 
-Our robot has serial and serial3, serial is connected to compass while serial3 is connected to OpenMV camera. They are connected to the UART port on the Arduino mega
+Our robot has serial1 and serial3, serial1 is connected to compass while serial3 is connected to OpenMV camera. They are connected to the UART port on the Arduino mega.
 
 <br><br>
 
