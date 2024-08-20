@@ -345,7 +345,7 @@ There are a lot of wheels to select. We chose this one because of it's size. If 
 
 <br><br>
 
- # **Part 3: Program explanation**
+ # **Program explanation**
 
 We have developed two programs for our upcoming competition. Each program is designed for a different round - the qualification round and the final round. The first program includes two subprograms that are also included in the program for the final round. Each subprogram is made up of a main program and a function. 
 
