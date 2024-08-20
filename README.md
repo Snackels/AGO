@@ -538,6 +538,12 @@ On this line is another function called `ultra_servo` which use `pvYaw` and `TUR
 
 Additionally we added another line of code to stop the robot program by pressing button to stop the motor from running. And to keep it running again you must reset your robot.
 
+
+
+
+
+
+
 ### Function 
 
 This is all the function of our program.
@@ -731,3 +737,12 @@ void start() {
   } 
 ```
 - **Description**: this function is a part of a control loop for a robotic system where sensors provide data to adjust steering and ultrasonic servos to navigate a path.
+
+### OpenMV 
+
+Our OpenMV code.
+
+```py
+
+```
+- **Description**: This program is use to set the direction of the motor. There's 2 input. First is the motor port connection. Second is the direction the robot is heading.
