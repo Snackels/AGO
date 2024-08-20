@@ -142,7 +142,7 @@ This part is like a brain of our body. It's job is to store all the program of o
 Additional info about UART:
 UART operates by transmitting data as a series of bits, including a start bit, data bits, an optional parity bit, and stop bit(s). Unlike parallel communication, where multiple bits are transmitted simultaneously, UART sends data serially, one bit at a time. As the name reveals the protocol operates asynchronous which means that it doesn't rely on a shared clock signal. Instead, it uses predefined baud rates to determine the timing of data bits.
 
-<img src = "https://docs.arduino.cc/static/d3a2c9ad97f1b7479b997e8d89426aaf/a6d36/parallelSerial.png" width = "400">
+<img src = "https://github.com/Snackels/AGO/blob/main/Diagram_and_Electric_Circuit/UART.png" width = "400">
 
 Our robot has serial1 and serial3, serial1 is connected to compass while serial3 is connected to OpenMV camera. They are connected to the UART port on the Arduino mega.
 
@@ -185,7 +185,7 @@ This part is also an extension of the board. It makes the connection between the
 
 ### Power Management And Inspection
 - ## **Camera** : OpenMV Cam H7 R1
-<image src="https://github.com/Snackels/FutureEngineer2024_YBR_AGO/blob/main/Robot/Parts/OpenMV.png" width = "400">
+<image src="https://github.com/Snackels/AGO/blob/main/Robot/Parts/OpenMV%20cam.png" width = "400">
 This component is very important for avoiding obstracle. It can detect red and green obstracle from distance to avoid crashing into it. The OpenMV also comes with it's own microcontroller. Making the robot locate and think faster when see the obstracle. The OpenMV also comes with GLCD screen at the back of it to display what the camera see. This camera can be coded with MicroPython. Additionally this camera wires connect with the sensor shield.
 
 #### STM32H743VI Specifications
@@ -251,7 +251,7 @@ This component is very important for avoiding obstracle. It can detect red and g
   <br><br>
 
 - ## **Ultrasonic sensor** : Gravity URM 09 ultrasonic distance sensor.
-<image src="https://github.com/Snackels/FutureEngineer2024_YBR_AGO/blob/main/Robot/Parts/Ultra.png?raw=true" width = "400">
+<image src="https://github.com/Snackels/AGO/blob/main/Robot/Parts/Ultrasonic.png" width = "400">
 The ultrasonic sensor plays a vital role in guiding the robot's navigation by accurately detecting distances between the robot and potential obstacles. Its precision in measuring distances ensures that the robot can maneuver and make informed decisions to navigate its path safely and effectively, avoiding collisions and maintaining its course.
 
 ### Electrical Specifications
@@ -274,7 +274,7 @@ The ultrasonic sensor plays a vital role in guiding the robot's navigation by ac
 <br><br>
 
 - ## **7.4 voltage Lipo-Battery** : 7.4 voltage 2 cell Lipo-Battery.
-<image src="https://github.com/Snackels/FutureEngineer2024_YBR_AGO/blob/main/Robot/Parts/Bat.png" width = "400">
+<image src="https://github.com/Snackels/AGO/blob/main/Robot/Parts/Battery.png" width = "400">
 The battery provides the power for our robot. This battery is very lightweight and compact to fit into the robot since the robot is very small. And it is also able to connect to our controller board. We calculated the amount of mAh that is enough to power our robot for 1-2 hours before recharged.
 
 ### Specification
@@ -289,7 +289,7 @@ The battery provides the power for our robot. This battery is very lightweight a
 <br><br>
 
 - ## **Light Sensor** : Virus III by Design By Sopon and ZX-03 By INEX
-<image src = "https://github.com/Snackels/FutureEngineer2024_YBR_AGO/blob/main/Robot/Parts/Virus%20(1).png?raw=true" width = "300">
+<image src = "https://github.com/Snackels/AGO/blob/main/Robot/Parts/Red%20sensor.png" width = "300">
 Virus III
 <image src = "https://github.com/Snackels/FutureEngineer2024_YBR_AGO/blob/main/Robot/Parts/Blue%20sensor.png" width = "300">
 ZX-03
@@ -304,7 +304,7 @@ The color sensors play an important role in both rounds, as we use them for line
 A gyro is a component that enables a robot to determine its orientation and turn in the appropriate direction. We chose this gyro sensor specifically because of how effective it is. It also comes in a very small
 size to attach to our robot.
 
-<image src = "https://github.com/Snackels/FutureEngineer2024_YBR_AGO/blob/main/Robot/Parts/gy25-tilt-sngle-sensor-oky3254%20(1).png" width = "400">
+<image src = "https://github.com/Snackels/AGO/blob/main/Robot/Parts/GyroCompass.png" width = "400">
 
 ### Specification
 
@@ -385,8 +385,11 @@ This is a step-down DC-DC module. It comes with a status indicator light, a disp
 <br><br>
 
 # **Electric Circuit And Flowchart**
+
+
 <img src = "https://github.com/Snackels/AGO/blob/main/Diagram_and_Electric_Circuit/Circuit.png?raw=true" width = "1000">
 
+<br><br>
 
  # **Program Explanation**
 
