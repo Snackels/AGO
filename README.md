@@ -384,7 +384,7 @@ This is a step-down DC-DC module. It comes with a status indicator light, a disp
 <br><br>
 
 # **Electric Circuit And Flowchart**
-<img src = "https://github.com/Snackels/AGO/blob/main/Diagram_and_Electric_Circuit/Circuit%20Diagram.pdf" width = "400">
+<img src = "https://github.com/Snackels/AGO/blob/main/Diagram_and_Electric_Circuit/Circuit.png?raw=true" width = "600">
 
 
  # **Program Explanation**
