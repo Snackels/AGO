@@ -47,7 +47,7 @@ Here are the team members from left to right.
 3. Vorawet Narkglom, 16 years old.
 
 
-## Robot Design.
+## Part 2: Robot Design
 ### The Robot
 
 Designing a robot for this competition is sometimes hard. We need to design it to be compact, lightweight, durable, and have all the functions we need. The robot must be four-wheeled with a steering function on either front or back wheel, which is why we need to be careful to pick the components. After we select all the components we need, then we think about how to put them all together. We came up with using Lego Technic parts. We spent a lot of time designing it to be within the size regulation. 
