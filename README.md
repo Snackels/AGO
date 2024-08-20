@@ -15,7 +15,9 @@ by Team *YBR-AGO*
 
 ## Our works (Youtube Links): 
 Without obstacle
-https://youtu.be/OX0P1ySq7O0?si=p41OlnyZ8GQXAvJI
+**https://youtu.be/OX0P1ySq7O0?si=p41OlnyZ8GQXAvJI**
+
+In this round, our strategy is to map the distance between the robot and the wall to be 30 CM. To start the robot, we place it on the track. Then we will open the switch to turn the robot on. After the switch is pressed, all servos will return to default position to ensure that the robot has the same value everytime. After that we will press the button at the back of our robot to start it. The ultrasonic servo will turn to the right to keep robot away from the wall. The robot will walk straight until the light sensors see the blue and red line on each corner of the track. The red sensor is used for detecting the blue line which indicate that the robot need to turn left. While blue sensor is used for both blue and red line. If the robot sees the red line first, it will turn right. We count the color line for 12 times to make sure that the robot has completed 3 laps around the track. After that line we will use timer to drive into parking position.
 
 With obstacle
 
@@ -115,6 +117,7 @@ There are a lot of wheels to select. We chose this one because of it's size. If 
  ### Controller
 - ## **Microcontroller Board** : Arduino Mega 2560 R3
 <img src = "https://github.com/LEST0808/Sunflower-Photos/blob/main/Mega.png?raw=true" width = "400">
+This part is like a brain of our body. It's job is to store all the program of our robot from the computer, every components in the robot comes through here. We chose this board because of it's connection port. We used Arduino Uno last year, but the problem is there's not enough port for OpenMV and GY-25. But there's some disadvantage in this board. Because this board has a lot of connection port, it comes with weight and size. It's almost 2 times longer than the UNO. And that makes the robot long and heavy.
 
 | Specification           | Value                                  |
 |-------------------------|----------------------------------------|
@@ -137,8 +140,26 @@ There are a lot of wheels to select. We chose this one because of it's size. If 
 
 <br><br>
 
+- ## **Sensor Shield** : Gravity IO Sensor Shield For Arduino Mega Due
+<img src = "https://github.com/LEST0808/YBR_AGO-Photos/blob/main/Sensor%20shield.png" width = "400">
+This part is an extension of the board. It is where ultrasonic, light sensors, button sensors, camera, compass, and servos go. It has alot of connection pin which can be used for each components. But with that it also come with a very long design. Make it hard to design where to place it on robot.
+
+| Specification                               | Value                                         |
+|---------------------------------------------|-----------------------------------------------|
+| Compatibility                               | Most Arduino shields                         |
+| Compatible Boards                           | Arduino Mega boards, DFRobot megaADK, Arduino megaADK |
+| Extended TTL Connection Pins                | Four Serial ports                            |
+| Prototyping Area                            | DIP prototyping area for additional modules or components |
+| Xbee Slots                                  | 3                                             |
+| microSD Slot                                | 1                                             |
+| Power Switch                                | Between Arduino Mega or external power       |
+| Size                                        | 125 x 57 mm (4.92 x 2.24")                   |
+
+<br><br>
+
 - ## **Motor Shield** : Gravity 2x2A Motor Shield for Arduino Twin
 <img src = "https://github.com/LEST0808/YBR_AGO-Photos/blob/main/motorshield%20(2).png?raw=true" width = "400">
+This part is also an extension of the board. It makes the connection between the board and motor easier. We connect the pin with the top of sensor shield.
 
 | Specification            | Value                                  |
 |--------------------------|----------------------------------------|
@@ -154,25 +175,10 @@ There are a lot of wheels to select. We chose this one because of it's size. If 
 
 <br><br>
 
-- ## **Sensor Shield** : Gravity IO Sensor Shield For Arduino Mega Due
-<img src = "https://github.com/LEST0808/YBR_AGO-Photos/blob/main/Sensor%20shield.png" width = "400">
-
-| Specification                               | Value                                         |
-|---------------------------------------------|-----------------------------------------------|
-| Compatibility                               | Most Arduino shields                         |
-| Compatible Boards                           | Arduino Mega boards, DFRobot megaADK, Arduino megaADK |
-| Extended TTL Connection Pins                | Four Serial ports                            |
-| Prototyping Area                            | DIP prototyping area for additional modules or components |
-| Xbee Slots                                  | 3                                             |
-| microSD Slot                                | 1                                             |
-| Power Switch                                | Between Arduino Mega or external power       |
-| Size                                        | 125 x 57 mm (4.92 x 2.24")                   |
-
-<br><br>
-
 ### Power Management And Inspection
 - ## **Camera** : OpenMV Cam H7 R1
 <image src="https://github.com/LEST0808/YBR_AGO-Photos/blob/main/OpenMV.png" width = "400">
+This component is very important for avoiding obstracle. It can detect red and green obstracle from distance to avoid crashing into it. The OpenMV also comes with it's own microcontroller. Making the robot locate and think faster when see the obstracle. The OpenMV also comes with GLCD screen at the back of it to display what the camera see. This camera can be coded with MicroPython. Additionally this camera wires connect with the sensor shield.
 
 #### STM32H743VI Specifications
 
@@ -238,6 +244,7 @@ There are a lot of wheels to select. We chose this one because of it's size. If 
 
 - ## **Ultra sonic sensor** : Gravity URM 09 ultrasonic distance sensor.
 <image src="https://github.com/LEST0808/POP32ph/blob/main/117270007.png" width = "400">
+The ultrasonic sensor plays a vital role in guiding the robot's navigation by accurately detecting distances between the robot and potential obstacles. Its precision in measuring distances ensures that the robot can maneuver and make informed decisions to navigate its path safely and effectively, avoiding collisions and maintaining its course.
 
 ### Electrical Specifications
 
@@ -260,6 +267,7 @@ There are a lot of wheels to select. We chose this one because of it's size. If 
 
 - ## **7.4 voltage Lipo-Battery** : 7.4 voltage 2 cell Lipo-Battery.
 <image src="https://github.com/LEST0808/POP32ph/blob/main/Bat.png" width = "400">
+The battery provides the power for our robot. This battery is very lightweight and compact to fit into the robot since the robot is very small. And it is also able to connect to our controller board. We calculated the amount of mAh that is enough to power our robot for 1-2 hours before recharged.
 
 ### Specification
 
@@ -274,9 +282,13 @@ There are a lot of wheels to select. We chose this one because of it's size. If 
 
 - ## **Light Sensor** : Virus III by Design By Sopon
 <image src = "https://github.com/LEST0808/POP32ph/blob/main/Virus.png" width = "400">
+The color sensors play an important role in both rounds, as we use them for line detection. There are 2 lines with different colors in the corner of the race field, which is why we use 2 different colors of the color sensor, blue and red. The blue color sensor is used for detecting both colors, while the red color sensor is only used for the blue line.
+
 <br><br>
 
 - ## **GyroCompass** :GY-25
+A gyro is a component that enables a robot to determine its orientation and turn in the appropriate direction. We chose this gyro sensor specifically because of how effective it is. It also comes in a very small
+size to attach to our robot.
 
 <image src = "https://github.com/LEST0808/POP32ph/blob/main/gy25-tilt-sngle-sensor-oky3254.png" width = "400">
 
@@ -305,12 +317,25 @@ There are a lot of wheels to select. We chose this one because of it's size. If 
 <br><br>
 
 - ## **Touch Sensor** : ZX-Switch01 by INEX
+This button gives us an easier way to start the robot. Since the controller board doesn't come with switches. So we found this button that could be attached to the frame outside the board using bolt. 
+
 <img src = "https://github.com/LEST0808/AGO-Photos/blob/main/ZX%20switch.png?raw=true" width = "400">
 
 <br><br>
 
+- ## **On/Off Switch** : SPST ON/OFF Switch 2 Pin Rocker Switch DC 125/250V
+This switch is for cutting the power from the battery to the robot. The regulation states that before starting the robot, the power must be cut off. That's when this switch came in. To use this switch we solder red wire(Positive pole) to the switch on 1 side for input. Then another solder red wire for output on the opposite side. You can put the black wire(Negative pole) straight into the step down. When the switch is turned on, the power from the battery will direct into the stepdown and then the robot. 
+
+<img src = "https://github.com/Snackels/FutureEngineer2024_YBR_AGO/blob/main/Robot/Parts/On-off%20Switch.png" width = "400">
+
+<br><br>
+
 - ## **Step-down** : HW-360 V6.0
+This is a step-down DC-DC module. It comes with a status indicator light, a display screen that shows the voltage meter, and self-calibration of the voltage meter. The electrical voltage has an error of 0.05 V, with a measuring range of 0–40 V. We need this step down to show us how long until we need to recharge the battery.
+
 <img src = "https://github.com/LEST0808/POP32ph/blob/main/Stepdown.png" width = "400">
+
+<br><br>
 
 ### Specification
 
