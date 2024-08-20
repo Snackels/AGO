@@ -281,9 +281,9 @@ The battery provides the power for our robot. This battery is very lightweight a
 <br><br>
 
 - ## **Light Sensor** : Virus III by Design By Sopon and ZX-03 By INEX
-<image src = "https://github.com/Snackels/FutureEngineer2024_YBR_AGO/blob/main/Robot/Parts/Virus%20(1).png?raw=true" width = "400">
+<image src = "https://github.com/Snackels/FutureEngineer2024_YBR_AGO/blob/main/Robot/Parts/Virus%20(1).png?raw=true" width = "300">
 Virus III
-<image src = "https://github.com/Snackels/FutureEngineer2024_YBR_AGO/blob/main/Robot/Parts/Blue%20sensor.png" width = "400">
+<image src = "https://github.com/Snackels/FutureEngineer2024_YBR_AGO/blob/main/Robot/Parts/Blue%20sensor.png" width = "300">
 ZX-03
 
 The color sensors play an important role in both rounds, as we use them for line detection. There are 2 lines with different colors in the corner of the race field, which is why we use 2 different colors of the color sensor, blue and red. The blue color sensor is used for detecting both colors, while the red color sensor is only used for the blue line.
