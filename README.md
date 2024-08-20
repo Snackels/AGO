@@ -643,3 +643,91 @@ bool getIMU() {
 }
 ```
 - **Description**: This function is used to get data from the IMU (Inertial Measurement Unit). It processes incoming data in a specific format, extracts yaw information, and ensures it stays within a defined range. It returns `true` when it successfully processes valid data and `false` otherwise.
+
+### `Ultrasonic Servo`
+```c++
+void ultra_servo(int degree, char mode_steer) {
+  int middle_degree = 0;
+  if (mode_steer == 'F') {
+    middle_degree = 142;
+  } else if (mode_steer == 'R' || mode_steer == 'U') {
+    middle_degree = 70;  //45
+  } else if (mode_steer == 'L') {
+    middle_degree = 210;
+  } else {
+  }
+  servo1.write(mapf(max(min(middle_degree + degree, 225), 45), 0, 270, 0, 180));
+}
+```
+- **Description**: This function controls a servo motor's position based on the desired degree and the mode_steer parameter, which determines the middle degree position. It ensures that the servo's position is within the valid range for servo control.
+
+### `Steering servo`
+```c++
+void steering_servo(int degree) {
+  servo2.write((90 + max(min(degree, 48), -48)) / 2);
+}
+```
+- **Description**: This function controls a servo motor's position based on the desired degree. It ensures that the servo's position is within a valid range for servo control.
+
+### `Get distance`
+```c++
+float getDistance() {
+  return min(mapf(analogRead(Ultra), 0, 1023, 0, 500), 50);
+}
+```
+- **Description**: This function is used to measure the distance between the wall and the robot using an ultrasonic sensor. It provides a simple way to obtain distance data.
+
+### `Color detect`
+```c++
+void Color_detection() {
+  int blue_value = analogRead(Blue_sen);
+  if (TURN == 'U') {
+    int red_value = analogRead(Red_sen);
+    if (blue_value < 679 || red_value < 329) {
+      int lowest_red = red_value;
+      long color_window = millis();
+      while (millis() - color_window < 100) {
+        int red_value = analogRead(Red_sen);
+        if (red_value < lowest_red) {
+          lowest_red = red_value;
+        }
+      }
+      if (lowest_red > 329) {
+        TURN = 'L';
+        compass_offset += 90;
+      } else {
+        TURN = 'R';
+        compass_offset -= 90;
+      }
+      detect_line_timer = millis();
+      LineCounter++;
+      LineDetect = 1;
+    }
+  } else {
+    if (millis() - detect_line_timer > 1300) {
+      if (blue_value < 679) {
+        if (TURN == 'R') {
+          compass_offset -= 90;
+        } else {
+          compass_offset += 90;
+        }
+        detect_line_timer = millis();
+        LineCounter++;
+        LineDetect = 1;
+      }
+    }
+  }
+}
+```
+- **Description**: This function is responsible for detecting lines and making decisions about steering behavior and the TURN mode based on sensor readings and timing.
+
+### `Start`
+```c++
+void start() {
+  Serial.println(LineDetect);
+  if (LineDetect != 1) {
+    steering_servo(CompassPID.Run(pvYaw + ((getDistance() - fDistance))));
+    ultra_servo(pvYaw, TURN);
+  } 
+```
+- **Description**: this function is a part of a control loop for a robotic system where sensors provide data to adjust steering and ultrasonic servos to navigate a path.
