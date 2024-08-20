@@ -286,6 +286,8 @@ Virus III
 <image src = "https://github.com/Snackels/FutureEngineer2024_YBR_AGO/blob/main/Robot/Parts/Blue%20sensor.png" width = "300">
 ZX-03
 
+<br><br>
+
 The color sensors play an important role in both rounds, as we use them for line detection. There are 2 lines with different colors in the corner of the race field, which is why we use 2 different colors of the color sensor, blue and red. The blue color sensor is used for detecting both colors, while the red color sensor is only used for the blue line.
 
 <br><br>
@@ -378,7 +380,7 @@ This is a step-down DC-DC module. It comes with a status indicator light, a disp
 
 We have developed two programs for our upcoming competition. Each program is designed for a different round - the qualification round and the final round. The first program includes two subprograms that are also included in the program for the final round. Each subprogram is made up of a main program and a function. 
 
-### First Section [qualification round]
+### First Section [Without Obstracle]
 ```c++
 #include "Mapf.h"
 #include <Servo.h>
@@ -386,7 +388,7 @@ We have developed two programs for our upcoming competition. Each program is des
 ```
 In our program, we begin by including several libraries. One such library is Mapf.h, which extends the Arduino map() function and provides floating point reading from function mapf() and changes any ADC resolution input reading to any voltage output with mapf_ADC(). Another library we include is servo.h, which enables our controller boards to control a variety of servo motors. This library is capable of controlling a great number of servos. Additionally, we use PID_v2.h, which is a PID controller that seeks to keep some input variable close to a desired setpoint by adjusting an output. The way in which it does this can be 'tuned' by adjusting three parameters (P, I, D).
 
-### Second Section [qualification round]
+### Second Section [Without Obstracle]
 ```c++
 Servo servo1;
 Servo servo2;
@@ -439,7 +441,7 @@ Following that, we declare variables for the compass: `pvYaw, pvRoll, and pvPitc
 
 Finally, this part of the code uses the PID_v2 library to help the robot drive straight by employing PID (Proportional-Integral-Derivative) control to correct for oversteering. The last section defines the field configuration, which will be used later in the program.
 
-### Third Section [qualification round]
+### Third Section [Without Obstracle]
 ```c++
 void setup() {
   Serial.begin(115200);
@@ -488,7 +490,7 @@ The "steering" and "ultra servo" parts are set to 0 because, at the program's st
 
 As for `analogRead(Button)`, it corresponds to our button. When the value obtained from analogRead(3) is greater than 500, it indicates that the button has been pressed. In response, the compass is set to a zero yaw position. If the button is not pressed, the robot remains in its current state without making any adjustments.
 
-### Fourth Section [qualification round]
+### Fourth Section [Without Obstracle]
 ```c++
 void loop() {
   while (analogRead(Button) > 500) {
@@ -535,3 +537,109 @@ Now, the main program we also use a function called `steering servo`. Inside tha
 On this line is another function called `ultra_servo` which use `pvYaw` and `TURN` to control which direction the servo is turning toward. After that then there's a logic "if". Inside if theres a function called `line detection` which is for detecting red and blue line on race track by using light sensors. So if the robot detect equal or more than 12 lines that mean the robot has completed 3 laps around the track and is about to end it's program. Next line we declared a variable called `TimerLine` equals to millisec. And while millisec minus with `TimerLine` is less than 920. Then we get the IMU value and use a `Color_detection` function. Also we used the same servo formula as before to keep the robot straight into the stop position without crashing into walls. Then we end the program with motor speed to 0. 
 
 Additionally we added another line of code to stop the robot program by pressing button to stop the motor from running. And to keep it running again you must reset your robot.
+
+### Function 
+
+This is all the function of our program.
+
+### `Set motor direction`
+```c++
+void setMotorDirection(int motorNumber, int direction) {
+  digitalWrite(MotorPin[motorNumber].directionPin, direction);
+```
+- **Description**: This program is use to set the direction of the motor. There's 2 input. First is the motor port connection. Second is the direction the robot is heading.
+
+### `Set motor speed`
+```c++
+inline void setMotorSpeed(int motorNumber, int speed) {
+  analogWrite(MotorPin[motorNumber].enPin, 255.0 * (speed / 100.0));
+```
+- **Description**: This function is for controlling the speed of the motor by inputting motor port connection and speed you want.
+
+### `Motor`
+```c++
+void motor(int speed) {
+  if (speed > 0) {
+    setMotorDirection(M1, Forward);
+    setMotorSpeed(M1, speed);
+  } else {
+    setMotorDirection(M1, Backward);
+    setMotorSpeed(M1, speed * -1);
+  }
+}
+```
+- **Description**: This function is very important as we use it to control our motor by using the first two function. There's only 1 input in this function which is the speed. When the speed is positive, the robot will be driving forward. But if it's negative, the robot will do the opposite.
+
+### `Initiate motor`
+```c++
+void initMotor() {
+  int i;
+  for (i = 0; i < MotorNum; i++) {
+    digitalWrite(MotorPin[i].enPin, LOW);
+
+    pinMode(MotorPin[i].enPin, OUTPUT);
+    pinMode(MotorPin[i].directionPin, OUTPUT);
+  }
+}
+```
+- **Description**: This `initMotor` function initializes the motor control pins for a number of motors.
+
+### `Wrap value`
+```c++
+int wrapValue(int value, int minValue, int maxValue) {
+  int range = maxValue - minValue + 1;
+  if (value < minValue) {
+    value += range * ((minValue - value) / range + 1);
+  }
+  return minValue + (value - minValue) % range;
+}
+```
+- **Description**: Use to ensures that a value remains within specified minimum and maximum bounds. If the value exceeds these bounds, it wraps around to the other end of the range.
+
+### `Zero yaw`
+```c++
+void zeroYaw() {
+  Serial1.begin(115200);
+  delay(100);
+  // Sets data rate to 115200 bps
+  Serial1.write(0XA5);
+  delay(10);
+  Serial1.write(0X54);
+  delay(100);
+  // pitch correction roll angle
+  Serial1.write(0XA5);
+  delay(10);
+  Serial1.write(0X55);
+  delay(100);
+  // zero degree heading
+  Serial1.write(0XA5);
+  delay(10);
+  Serial1.write(0X52);
+  delay(100);
+  // automatic mode
+}
+```
+- **Description**: This function is for the compass.It is used to set compass into 0 degree. It's essential to ensure consistent behavior each time the robot drives.
+
+### `Get IMU`
+```c++
+bool getIMU() {
+  while (Serial1.available()) {
+    rxBuf[rxCnt] = Serial1.read();
+    if (rxCnt == 0 && rxBuf[0] != 0xAA) return;
+    rxCnt++;
+    if (rxCnt == 8) {  // package is complete
+      rxCnt = 0;
+      if (rxBuf[0] == 0xAA && rxBuf[7] == 0x55) {  // data package is correct
+        pvYaw = (int16_t)(rxBuf[1] << 8 | rxBuf[2]) / 100.f;
+        pvPitch = (int16_t)(rxBuf[3] << 8 | rxBuf[4]) / 100.f;
+        pvRoll = (int16_t)(rxBuf[5] << 8 | rxBuf[6]) / 100.f;
+        pvYaw = wrapValue(pvYaw + compass_offset, -179, 180);
+        return true;
+      }
+    }
+  }
+  return false;
+}
+```
+- **Description**: This function is used to get data from the IMU (Inertial Measurement Unit). It processes incoming data in a specific format, extracts yaw information, and ensures it stays within a defined range. It returns `true` when it successfully processes valid data and `false` otherwise.
