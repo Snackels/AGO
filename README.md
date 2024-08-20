@@ -22,7 +22,6 @@ With obstacle
 
 
 ### This Github repository contains:
-# The Open-Source Machine Vision Project
   - [About our team](#About-our-team)
   - [Robot Design](#robot-design)
   - [Program explaination](#program-explaination)
