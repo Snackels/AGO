@@ -25,9 +25,10 @@ With obstacle
 
 
 ### This Github repository contains:
-  - [About our team](#About-our-team)
+  - [About our team](#about-our-team)
   - [Robot Design](#robot-design)
-  - [Program explaination](#program-explaination)
+  - [Electric Circuit And Flowchart](#electric-circuit-and-flowchart)
+  - [Program Explanation](#program-explanation)
 
 
 
