@@ -414,7 +414,7 @@ Our robot open challenge flowchart. In this round, our robot must complete 3 lap
 
 <img src = "https://github.com/Snackels/AGO/blob/main/Diagram_and_Electric_Circuit/ObstacleFlowchart.jpg" width = "1000">
 
-This is how our robot works in obstacle challenge.
+This flowchart shows how our robot works in obstacle challenge. 
 
 <br><br>
 
