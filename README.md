@@ -423,9 +423,9 @@ This flowchart shows how our robot works in obstacle challenge.
 
  # **Program Explanation**
 
-We have developed two programs for our upcoming competition. Each program is designed for a different round - the qualification round and the final round. The first program includes two subprograms that are also included in the program for the final round. Each subprogram is made up of a main program and a function. 
+We have developed two programs for our upcoming competition. Each program is designed for a different round - the open challenge and the obstacle challege. The first program includes two subprograms that are also included in the program for the obstacle challenge. Each subprogram is made up of a main program and a function. 
 
-### First Section [Without Obstracle]
+### First Section [Open Challenge]
 ```c++
 #include "Mapf.h"
 #include <Servo.h>
@@ -433,7 +433,7 @@ We have developed two programs for our upcoming competition. Each program is des
 ```
 In our program, we begin by including several libraries. One such library is Mapf.h, which extends the Arduino map() function and provides floating point reading from function mapf() and changes any ADC resolution input reading to any voltage output with mapf_ADC(). Another library we include is servo.h, which enables our controller boards to control a variety of servo motors. This library is capable of controlling a great number of servos. Additionally, we use PID_v2.h, which is a PID controller that seeks to keep some input variable close to a desired setpoint by adjusting an output. The way in which it does this can be 'tuned' by adjusting three parameters (P, I, D).
 
-### Second Section [Without Obstracle]
+### Second Section [Open Challenge]
 ```c++
 Servo servo1;
 Servo servo2;
@@ -486,7 +486,7 @@ Following that, we declare variables for the compass: `pvYaw, pvRoll, and pvPitc
 
 Finally, this part of the code uses the PID_v2 library to help the robot drive straight by employing PID (Proportional-Integral-Derivative) control to correct for oversteering. The last section defines the field configuration, which will be used later in the program.
 
-### Third Section [Without Obstracle]
+### Third Section [Open Challenge]
 ```c++
 void setup() {
   Serial.begin(115200);
@@ -529,7 +529,7 @@ The "steering" and "ultra servo" parts are set to 0 because, at the program's st
 
 As for `analogRead(Button)`, it corresponds to our button. When the value obtained from analogRead(3) is more than 500, it means that the button has been pressed. In response, the compass is set to a zero yaw position. If the button is not pressed, the robot remains in its current state without making any adjustments.
 
-### Fourth Section [Without Obstracle]
+### Fourth Section [Open Challenge]
 ```c++
 void loop() {
   while (analogRead(Button) > 500) {
@@ -577,10 +577,173 @@ On this line is another function called `ultra_servo` which use `pvYaw` and `TUR
 
 Additionally we added another line of code to stop the robot program by pressing button to stop the motor from running. And to keep it running again you must reset your robot.
 
+<br><br>
 
+### First Section [Obstacle Challenge]
+```c++
+#include "Mapf.h"
+#include <Servo.h>
+#include <PID_v2.h>
+```
+In this section, there's nothing to explain about since it mirror with open challenge.
 
+### Second Section [Obstacle Challenge]
+```c++
+Servo servo1;
+Servo servo2;
 
+//motor
+/**set control port**/
+const int E1Pin = 10;
+const int M1Pin = 12;
+/**inner definition**/
+typedef struct {
+  byte enPin;
+  byte directionPin;
+} MotorContrl;
 
+const int M1 = 0;
+const int M2 = 1;
+const int MotorNum = 1;
+
+const MotorContrl MotorPin[] = { E1Pin, M1Pin };
+
+const int Forward = LOW;
+const int Backward = HIGH;
+
+// Servos
+int const Steer_Servo = 25;
+int const Ultra_servo = 26;
+// Ultrasonic
+int const Ultra = A9;
+int fDistance;
+// Light sensor
+int const Red_sen = A7;
+int const Blue_sen = A8;
+// Button
+int const Button = A6;
+//Compass Variable
+float pvYaw, pvRoll, pvPitch;
+uint8_t rxCnt = 0, rxBuf[8];
+//PID
+PID_v2 CompassPID(0.6, 0, 0.025, PID::Direct);
+//Field config
+char TURN = 'U';
+long detect_line_timer;
+int LineCounter = 0;
+int compass_offset = 0;
+int LineDetect = 0;
+//Camera Variable
+static int GreenBlobX = -1;
+static int GreenBlobY = -1;
+static int GreenBlobHeight = -1;
+static int RedBlobX = -1;
+static int RedBlobY = -1;
+static int RedBlobHeight = -1;
+char ColorChecker = 'U';  // Default value
+
+char buffer[128];  // Buffer to hold incoming data
+char *string[5];   // Array to hold token pointers
+char *ptr = NULL;  // Pointer to current token
+//Avoidance Variable
+float YDistance;
+float XDistance;
+bool FoundBlock = false;
+float CalculateAvoidance = 0;
+char LatestBlock;
+
+//Return Variable
+float GInitialY = 0;
+float GInitialX = 0;
+float RInitialY = 0;
+bool blockDodged = false;
+bool returnvalue = false;
+long dodgeTime;
+int final_value;
+```
+In this section, most of the code are the same. But we added a few more variable for our camera to help mapping the obstacle pillars. Let's start with `GreenBlob` and `RedBlob`. In the program above, there are 3 different variable for each pillar color. Those variable are used to locate the obstacle pillar by measuring the size. It also helps with the case that if there are 2 pillars, this can map the size of the pillars to see which one is bigger and the bigger being closer.
+
+Next line is `ColorChecker`. It is used to detect the color of the pillar. In this case there are only 2 colors being red and green. Following line, there is a char variable called `buffer` which is used for holding the incoming data within 128 letters. Next is char `*string` which defines an array of 5 pointers to char. And next is char `*ptr` is used to declares a pointer to char and initializes it to NULL.
+
+Now, we are here with variable we use to avoid the obstacle. First is `YDistance` which is used to measure the distance between the robot and the obstacle in Y axis. And `XDistance` is used to measure from X axis. After that, there's a boolean logic when `FoundBlock` is equal to false. The float `CalculateAvoidance` is set to 0 because it will be changed later in the program. And next char is used to detect the last block to decide if it need to perform a U-Turn around the red pillar or it can just drive pass the green one. 
+
+Finally, this is the part where we return the variable value. 
+
+### Third Section [Obstacle Challenge]
+```c++
+void setup() {
+  Serial.begin(19200);
+  Serial3.begin(19200);
+  CompassPID.Start(0, 0, 0);
+  CompassPID.SetOutputLimits(-180, 180);
+  CompassPID.SetSampleTime(10);
+  pinMode(Steer_Servo, OUTPUT);
+  pinMode(Ultra_servo, OUTPUT);
+  pinMode(Ultra, INPUT);
+  pinMode(Red_sen, INPUT);
+  pinMode(Blue_sen, INPUT);
+  pinMode(Button, INPUT);
+  initMotor();
+  servo1.attach(Ultra_servo, 500, 2400);
+  servo2.attach(Steer_Servo, 500, 2500);
+  ultra_servo(0, 'R');
+  steering_servo(0);
+  while (analogRead(Button) > 500)
+    ;
+  zeroYaw();
+  while (analogRead(Button) <= 500)
+    ;
+}
+```
+This section also mirror with the open challenge. But with a few adjustment in the `serial.begin`. The `serial` is for connecting with the compass while `serial3` is for connecting with the camera.
+
+### Fourth Section [Obstacle Challenge]
+```c++
+void loop() {
+  while (analogRead(Button) > 500) {
+    BobDetection();
+    CalculateAvoidance = Avoidance_calculation();
+    if ((!blockDodged && CalculateAvoidance != 0) || (FoundBlock == true && CalculateAvoidance != 0)) {
+      blockDodged = true;  // Mark the block as dodged
+      final_value = CalculateAvoidance;
+    }
+
+    if ((blockDodged && CalculateAvoidance == 0) || (blockDodged && FoundBlock == false)) {
+      blockDodged = false;
+      returnvalue = true;
+    }
+
+    if (returnvalue == true) {
+      float returncalculation = (asin(sqrt(sq(GInitialX) + sq(GInitialY)))) * -2;
+      while ((getDistance() > GInitialX +3) || (getDistance() < GInitialX - 3)) {
+        final_value = returncalculation;
+      }
+      returnvalue = false;
+      GInitialY = 0;
+      GInitialX = 0;
+      RInitialY = 0;
+      blockDodged = false;
+    }
+    // Serial.print(LatestBlock);
+    Serial.print(" ");
+    Serial.println(CalculateAvoidance);
+    motor(100);
+    steering_servo(final_value);
+  }
+  while (analogRead(Button) <= 500) {
+    motor(0);
+  }
+  while (analogRead(Button) > 500)
+    ;
+  while (analogRead(Button) <= 500)
+    ;
+}
+```
+In this section, we begin with button. If the button is pressed the program will start. After the program start, we utilize a function called `BobDetection`. This function is for detecting the obstacle block. Then we declare that `CalculateAvoidance` is equal to `Avoidance_calculation` function.
+
+In this line, there's if logic. First, if `blockDodged` and `CalculateAvoidance` is not 0 or the robot `foundblock` then `calculateavoidance` is not 0. In this logic, we also declared that `blockdodged` is true meaning that we are marking that pillar. But in another case, if `blockDodged` and `CalculateAvoidance` is not 0 or the robot didn't dodged the block or found any pillar. Then we marked that `blockdodged` is false and then return the value. Following up is if `returnvalue` is true, we will calculate `returncalculation` by calculating `(asin(sqrt(sq(GInitialX) + sq(GInitialY)))) * -2;`. And while getDistance is more than `GInitialX` plus by 3 or less than `GInitialX` minus by 3. Then the `final_value` is equal to `returncalculation`. After, we return the value.
+
+This is where the code is used to drive the robot. We used the function called `steering_servo` and we put the `final_value` we calculated earlier inside to drive the robot forward and avoid hitting the obstacle. Finally, the program can ended with the button sensor being pressed.
 
 
 ### Function 
@@ -775,7 +938,136 @@ void start() {
     ultra_servo(pvYaw, TURN);
   } 
 ```
-- **Description**: this function is a part of a control loop for a robotic system where sensors provide data to adjust steering and ultrasonic servos to navigate a path.
+- **Description**: This function is a part of a control loop for our robot system where sensors provide data to adjust steering and ultrasonic servos to navigate a path.
+
+### `Block Detection`
+```c++
+void BobDetection() {
+  static int bufferIndex = 0;
+  while (Serial3.available()) {
+    char byteRead = Serial3.read();  // Read byte from Serial3
+
+    if (byteRead == '\n') {        // End of line detected
+      buffer[bufferIndex] = '\0';  // Null-terminate the buffer
+      bufferIndex = 0;             // Reset buffer index
+
+      // Tokenize the buffer
+      ptr = strtok(buffer, ",");
+      int index = 0;
+      while (ptr != NULL && index < 5) {
+        string[index] = ptr;  // Store the token
+        index++;
+        ptr = strtok(NULL, ",");
+      }
+
+      // Ensure that there are enough tokens before accessing them
+      if (index >= 4) {  // Ensure we have at least 4 tokens
+        // Assuming ColorChecker is meant to be a single character
+        ColorChecker = string[3][0];  // Assign single character from the token
+        FoundBlock = true;
+
+        if (ColorChecker == 'G') {
+          // If ColorChecker is 'G', update GreenBlob values
+          GreenBlobX = atoi(string[0]);
+          GreenBlobY = atoi(string[1]);
+          GreenBlobHeight = atoi(string[2]);
+        } else if (ColorChecker == 'R') {
+          // If ColorChecker is 'R', update RedBlob values
+          RedBlobX = atoi(string[0]);
+          RedBlobY = atoi(string[1]);
+          RedBlobHeight = atoi(string[2]);
+        }
+
+        // Print values to Serial Monitor for debugging
+        // Serial.print("GreenBlobX: ");
+        // Serial.print(GreenBlobX);
+        // Serial.print(" GreenBlobY: ");
+        // Serial.print(GreenBlobY);
+        // Serial.print(" GreenBlobHeight: ");
+        // Serial.print(GreenBlobArea);
+        // Serial.print(" RedBlobX: ");
+        // Serial.print(RedBlobX);
+        // Serial.print(" RedBlobY: ");
+        // Serial.print(RedBlobY);
+        // Serial.print(" RedBlobArea: ");
+        // Serial.print(RedBlobArea);
+        // Serial.print(" ColorChecker: ");
+        // Serial.println(ColorChecker);
+      } else {
+        // Handle the case where there are not enough tokens
+        Serial.println("Error: Not enough data tokens received.");
+        FoundBlock = false;
+        GreenBlobX = -1;
+        GreenBlobY = -1;
+        GreenBlobHeight = -1;
+        RedBlobX = -1;
+        RedBlobY = -1;
+        RedBlobHeight = -1;
+      }
+    } else {
+      // Store byte in buffer if not end of line
+      if (bufferIndex < sizeof(buffer) - 1) {
+        buffer[bufferIndex++] = byteRead;
+      } else {
+        // Buffer overflow protection
+        bufferIndex = 0;  // Reset buffer if it overflows
+        Serial.println("Error: Buffer overflow.");
+      }
+    }
+  }
+}
+```
+- **Description**: This function is designed to read and process data from a serial input, which is the camera. It reads incoming data byte by byte and then processes it to extract information, and updates various variables based on the received tokens.
+
+### `Avoidance calculation`
+```c++
+float Avoidance_calculation() {
+  if (FoundBlock == true) {
+
+    int focalLenght = 2.8;
+    int TargetHeight = 10;
+
+    if (ColorChecker == 'G') {
+      float Gdistance = (TargetHeight * focalLenght * 79) / GreenBlobHeight;
+      float GDeltaX = GreenBlobX - 160;
+      float Gdetected_degree = GDeltaX * 70 / 320;
+      float GBlockX = Gdistance * sin(degreesToRadians(Gdetected_degree));
+      if (GInitialX == 0) {
+        GInitialX = getDistance();
+      }
+      float GBlockY = Gdistance * cos(degreesToRadians(Gdetected_degree)) - 16;
+      if (GInitialY == 0) {
+        GInitialY = GBlockY;
+      }
+      CalculateAvoidance = max(radiansToDegree(atan2(GBlockX + 9, GBlockY)), 5);
+      LatestBlock = 'G';
+      // BlocksTurn = 'TURN';
+      // Serial.println(Gdistance);
+    } else if (ColorChecker == 'R') {
+      float Rdistance = (TargetHeight * focalLenght * 100) / RedBlobHeight;
+      float RDeltaX = RedBlobX - 160;
+      float Rdetected_degree = RDeltaX * 40 / 320;
+      float RBlockX = Rdistance * sin(degreesToRadians(Rdetected_degree));
+      float RBlockY = Rdistance * cos(degreesToRadians(Rdetected_degree)) - 16;
+      CalculateAvoidance = min(radiansToDegree(atan2(RBlockX - 9, RBlockY)), 5);
+      LatestBlock = 'R';
+    }
+  } else {
+    CalculateAvoidance = 0;
+  }
+  return CalculateAvoidance;
+}
+```
+- **Description**:  This function utilizes the OpenMV camera data to calculate the robot's optimal steering to avoid obstacles effectively. It plays a crucial role in maintaining the robot's path and avoiding collisions. The code is configured to use a specific signature and size for red and green obstacles in the OpenMV app.
+
+### `Start`
+```c++
+float degreesToRadians(double degrees) {
+  return degrees * PI / 180.0;
+}
+```
+- **Description**: This function is a part of a control loop for our robot system where sensors provide data to adjust steering and ultrasonic servos to navigate a path.
+
 
 ### OpenMV 
 
