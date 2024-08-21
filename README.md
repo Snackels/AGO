@@ -63,8 +63,13 @@ Our robot has two servos, one on the bottom front and one on the top front. The 
 Here is what our robot looks like without the components.
 
 <image src="https://github.com/Snackels/AGO/blob/main/Robot/3D/Robot%20render.png" width = "400">
-  
-![Robot Car Assemble](https://github.com/Snackels/AGO/raw/main/Robot/3D/Robot%20car%20assemble.gif)
+
+
+This is how to make our robot in timelapse. It shows inside of the robot of where to put the motor and differential.
+<div align="center">
+    <img src="https://github.com/Snackels/AGO/raw/main/Robot/3D/Robot%20car%20assemble.gif" alt="Robot Car Assemble" width="400">
+</div>
+
 <br>
 
 ### Our robot components
