@@ -405,6 +405,10 @@ Our robot open challenge flowchart. In this round, our robot must complete 3 lap
 
 <br><br>
 
+<img src = "https://github.com/Snackels/AGO/blob/main/Diagram_and_Electric_Circuit/ObstacleFlowchart.jpg" width = "1000">
+
+<br><br>
+
  # **Program Explanation**
 
 We have developed two programs for our upcoming competition. Each program is designed for a different round - the qualification round and the final round. The first program includes two subprograms that are also included in the program for the final round. Each subprogram is made up of a main program and a function. 
