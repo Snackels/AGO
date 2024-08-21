@@ -1060,13 +1060,21 @@ float Avoidance_calculation() {
 ```
 - **Description**:  This function utilizes the OpenMV camera data to calculate the robot's optimal steering to avoid obstacles effectively. It plays a crucial role in maintaining the robot's path and avoiding collisions. The code is configured to use a specific signature and size for red and green obstacles in the OpenMV app.
 
-### `Start`
+### `Degree to radians calculator`
 ```c++
 float degreesToRadians(double degrees) {
   return degrees * PI / 180.0;
 }
 ```
-- **Description**: This function is a part of a control loop for our robot system where sensors provide data to adjust steering and ultrasonic servos to navigate a path.
+- **Description**: This simple function converts angle measurements between degrees and radians, aiding in angle calculations within the code.
+
+### `Radians to degree calculator`
+```c++
+float radiansToDegree(double raidans) {
+  return raidans / PI * 180.0;
+}
+```
+- **Description**: This function, as the counterpart to `degreesToRadians`, converts angles from radians to degrees, facilitating angle calculations.
 
 
 ### OpenMV 
