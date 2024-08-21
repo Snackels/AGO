@@ -197,7 +197,7 @@ This part is also an extension of the board. It makes the connection between the
 <br><br>
 
 ### Power Management And Inspection
-- ## **Camera** : OpenMV Cam H7 R1
+- ## **Camera** : OpenMV H7 R1
 <image src="https://github.com/Snackels/AGO/blob/main/Robot/Parts/OpenMV%20cam.png" width = "400">
 This component is very important for avoiding obstacle. It can detect red and green obstacle from distance to avoid crashing into it. The OpenMV also comes with it's own microcontroller. Making the robot locate and think faster when see the obstacle. The OpenMV also comes with GLCD screen at the back of it to display what the camera see. This camera can be coded with MicroPython. Additionally, this camera wires are connected with the sensor shield.
 
