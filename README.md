@@ -64,7 +64,7 @@ Here is what our robot looks like without the components.
 
 <image src="https://github.com/Snackels/AGO/blob/main/Robot/3D/Robot%20render.png" width = "400">
   
-<image src="https://github.com/Snackels/AGO/blob/main/Robot/3D/Robot%20car%20assemble.gif" width = "600>  
+![Robot Car Assemble](https://github.com/Snackels/AGO/raw/main/Robot/3D/Robot%20car%20assemble.gif)
 <br>
 
 ### Our robot components
