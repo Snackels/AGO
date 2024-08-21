@@ -66,7 +66,7 @@ Here is what our robot looks like without the components.
 
 <br>
 
-This is how to make our robot in timelapse. It shows inside of the robot of where to put the motor and differential.
+This is how to make our robot in timelapse. It shows inside of the robot of where and how to put the motor and differential.
 <div align="center">
     <img src="https://github.com/Snackels/AGO/raw/main/Robot/3D/Robot%20car%20assemble.gif" alt="Robot Car Assemble" width="400">
 </div>
