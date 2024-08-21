@@ -397,7 +397,7 @@ This is a step-down DC-DC module. It comes with a status indicator light, a disp
 
 <br><br>
 
-This is 3D model of our robot to show what our robot looks like with the components.
+**This is 3D model of our robot to show what our robot looks like with the components.**
 <img src = "https://github.com/Snackels/AGO/blob/main/Robot/3D/Robot_car_picture_3D.png" width = "600">
 
 # **Electric Circuit And Flowchart**
