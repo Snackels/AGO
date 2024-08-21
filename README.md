@@ -58,7 +58,9 @@ Designing a robot using Lego parts is also not easy since we need to think about
 
 For the design, we placed the gyro around the middle-top of the robot to get the most accurate output, while the camera was positioned at the front of the gyro to detect objects quickly.
 
-Our robot has two servos, one on the bottom front and one on the top front. The bottom front servo is used to steer the wheel. Then, we added a top servo that rotates our ultrasonic. We use an ultrasonic to keep our robot out of the wall. Finally, we place our motor at the bottom back of the robot, and to ensure that it drives both wheels at the back, we use a gear differential from Lego. Here is what our robot looks like without the components.
+Our robot has two servos, one on the bottom front and one on the top front. The bottom front servo is used to steer the wheel. Then, we added a top servo that rotates our ultrasonic. We use an ultrasonic to keep our robot out of the wall. Finally, we place our motor at the bottom back of the robot, and to ensure that it drives both wheels at the back, we use a gear differential from Lego. 
+
+Here is what our robot looks like without the components.
 
 <image src="https://github.com/Snackels/AGO/blob/main/Robot/3D/Robot%20render.png" width = "400">
   
@@ -190,7 +192,7 @@ This part is also an extension of the board. It makes the connection between the
 ### Power Management And Inspection
 - ## **Camera** : OpenMV Cam H7 R1
 <image src="https://github.com/Snackels/AGO/blob/main/Robot/Parts/OpenMV%20cam.png" width = "400">
-This component is very important for avoiding obstracle. It can detect red and green obstracle from distance to avoid crashing into it. The OpenMV also comes with it's own microcontroller. Making the robot locate and think faster when see the obstracle. The OpenMV also comes with GLCD screen at the back of it to display what the camera see. This camera can be coded with MicroPython. Additionally this camera wires connect with the sensor shield.
+This component is very important for avoiding obstacle. It can detect red and green obstacle from distance to avoid crashing into it. The OpenMV also comes with it's own microcontroller. Making the robot locate and think faster when see the obstacle. The OpenMV also comes with GLCD screen at the back of it to display what the camera see. This camera can be coded with MicroPython. Additionally, this camera wires are connected with the sensor shield.
 
 #### STM32H743VI Specifications
 
