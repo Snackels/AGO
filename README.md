@@ -64,6 +64,7 @@ Here is what our robot looks like without the components.
 
 <image src="https://github.com/Snackels/AGO/blob/main/Robot/3D/Robot%20render.png" width = "400">
 
+<br>
 
 This is how to make our robot in timelapse. It shows inside of the robot of where to put the motor and differential.
 <div align="center">
